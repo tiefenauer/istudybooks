@@ -16,16 +16,21 @@
     </head>
 
     <body>
-
+	    
+	    Hello world!
+	    
         <!-- insert code -->
         <?php
 
-            require_once 'lib/org/phpmaven/library/LibraryClass.php';
+            /*
+            not working!
+            require_once '../lib/org/phpmaven/library/LibraryClass.php';
             
             use org\phpmaven\library\LibraryClass as Library;
 
             Library::getInstance();
             echo Library::doFoo(true);
+            */
 
         ?>
     </body>
