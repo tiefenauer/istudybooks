@@ -48,10 +48,11 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = '';
-$db['default']['password'] = '';
-$db['default']['database'] = '';
+$db['default']['hostname'] = 'www.tiefenauer.info';
+$db['default']['username'] = 'istudy';
+$db['default']['password'] = 'istudy';
+$db['default']['database'] = 'istudy';
+//maybe we have to use this: $db['default']['port'] = 5432;
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
