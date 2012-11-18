@@ -50,9 +50,10 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'www.tiefenauer.info';
 $db['default']['username'] = 'istudy';
-$db['default']['password'] = 'istudy';
+$db['default']['password'] = 'UxDHy45zv8jCxR32';
 $db['default']['database'] = 'istudy';
-//maybe we have to use this: $db['default']['port'] = 5432;
+//maybe we have to use this: 
+$db['default']['port'] = 3306;
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
