@@ -5,19 +5,8 @@ class Book extends CI_Controller{
 		echo "Index of book";
 	}
 	
-	public function add($type){
-		$this->load->helper('form');
+	public function book_insert(){
 		
-		$this->load->view($type . '_edit_view');
-	}
-	
-	public function edit($type,$id){
-		$this->load->helper('form');
-		
-		$data = array("id" => $id);
-		$this->load->model('offer_model');
-		$offer = $this->offer_model->getModle($type,$id);
-		$this->load->view($type . '_edit_view', $data);
 	}
 } 
 ?>
