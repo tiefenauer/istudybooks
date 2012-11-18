@@ -17,7 +17,7 @@
 
     <groupId>org.sample</groupId>
     <artifactId>istudybooks</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>php</packaging>
 
     <name>iStudyBooks</name>
@@ -93,40 +93,6 @@
 	        <artifactId>maven-release-plugin</artifactId>
 	        <version>2.0-beta-9</version>
 	      </plugin>
-			 		<!--  The web assembyl -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
- 				<artifactId>maven-assembly-plugin</artifactId>
-				
-				<dependencies>
-					<dependency>
-						<groupId>org.phpmaven</groupId>
-						<artifactId>maven-php-plugin</artifactId>
-						<version>1.0</version>
-					</dependency>
-				</dependencies>
-				<executions>
-					
-					<execution>
-						<id>bundle-project-sources</id>
-						<phase>package</phase>
-						
-						<goals>
-							<goal>single</goal>
-						</goals>
-						<configuration>
-							<descriptorRefs>
-								<descriptorRef>php-webapp</descriptorRef>
-							</descriptorRefs>
-							<formats>
-							  <format>tar.gz</format>
-							  <format>tar.bz2</format>
-							  <format>zip</format>
-							</formats>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
         </plugins>
         
     </build>
