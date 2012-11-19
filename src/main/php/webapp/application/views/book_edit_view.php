@@ -23,13 +23,16 @@
     </div>	    
     <div class="row">
     	<div class="span2"><label for="price">Preis: </label></div>
-    	<div class="span3"><input name="price" type="text" type="text" placeholder="Gew&uuml;nschter Preis" /></div>
+    	<div class="span3"><input name="price" type="text" required="required" placeholder="Gew&uuml;nschter Preis" /></div>
     </div>	
 	<div class="row">
     	<div class="span2"><label for="expires">Enddatum: </label></div>
-    	<div class="span3"><input name="expires" type="datetime" placeholder="Enddatum der Aktion" /></div>
+    	<div class="span3"><input name="expires" id="expires" type="datetime" placeholder="Enddatum der Aktion" /></div>
     </div>
 		
 	<input name="submit" type="submit" value="Erstellen" />
 	
 </form>
+<script>
+	$('#expires').datepicker().on('changeDate', function(ev){$('#expires').datepicker('hide')});
+</script>
