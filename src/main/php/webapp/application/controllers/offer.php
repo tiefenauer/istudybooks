@@ -7,7 +7,6 @@ class Offer extends CI_Controller{
 	
 	public function add($type){
 		$this->load->helper('form');
-		$this->load->helper('url');
 		$this->load->view('include/header');
 		$this->load->view($type . '_edit_view');
 		$this->load->view('include/footer');
