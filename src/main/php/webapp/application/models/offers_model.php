@@ -33,5 +33,21 @@ class Offers_model extends CI_Model {
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
+	
+	/**
+	 * Get a list of all media types
+	 */
+	public function get_types() {
+		$sql = '
+				SELECT DISTINCT articletype.typename
+				  FROM tbl_offer AS offer
+				  JOIN tbl_article AS article
+				    ON article.pk_article = offer.fk_article
+				  JOIN tbl_articletype AS articletype
+				    ON articletype.pk_articletype = article.fk_articletype
+		';
+		$query = $this->db->query($sql);
+		return $query->result_array();
+	}
 }
 ?>

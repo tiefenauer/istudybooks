@@ -1,4 +1,23 @@
+<?php 
+$tokens = explode('/', $_SERVER['REQUEST_URI']);
+$activetab = $tokens[sizeof($tokens)-1] === 'offers'?'Buch':$tokens[sizeof($tokens)-1];
+$base = explode('/offers/', $_SERVER['REQUEST_URI']);
+$base = $base[0] . '/offers';
+?>
+
 <div class="row">
+	<div class="span12">
+		<ul class="nav nav-tabs">
+			<?php foreach ($types as $type): 
+				$typename = $type['typename'];
+				$active = ($typename === $activetab)?'class ="active"':'';?>
+			<li <?=$active?>>
+				<a href="<?=$base . '/show/' . $typename?>"><?=$typename?></a>
+			</li>				
+			<?php endforeach ?>
+		</ul>
+	</div>
+	
 	<table class="span12 table table-striped table-bordered table-hover">
 		<caption>Laufende Angebote</caption>
 		<thead>
