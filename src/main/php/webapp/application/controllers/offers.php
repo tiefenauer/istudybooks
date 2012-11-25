@@ -15,13 +15,13 @@ class Offers extends CI_Controller{
 	 * Default function
 	 */
 	public function index(){
-		$this->show('%');
+		$this->filter('%');
 	}
 	
 	/**
 	 * Show offers of a certain type
 	 */
-	public function show($type='%'){
+	public function filter($type='%'){
 		$data['types'] = $this->offers_model->get_types();
 		$data['offers'] = $this->offers_model->get_offers($type);
 		$this->load->view('include/header');
