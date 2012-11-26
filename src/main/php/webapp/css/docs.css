@@ -19,13 +19,6 @@ body {
 
 ul.nav>li>ul{
 	display: none;
-	position: absolute;
-	background: black;
-	color: white;
-	text-decoration: none;
-	border-radius: 5px;
-	padding: 10px;
-	min-width: 100px;
 }
 ul.nav>li>ul>li{
 	padding-bottom: 5px;

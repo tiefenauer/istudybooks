@@ -30,6 +30,7 @@
                 </a>
 	            <a class="brand" href="<?= base_url('') ?>">istudybooks</a>
 	            <div class="nav-collapse">
+	                <ul class="nav">
 	                     <li class="dropdown">
 	                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" href="<?= base_url('/offer/add/') ?>">Artikel eintragen
 	                            <b class="caret"></b>
@@ -43,7 +44,7 @@
 	                        </li>  
 	                        
 	                        <!--
-	                    <ul class="nav">
+	                   
 	                    	<li>
 	                    		<ul><?php foreach ($types as $type): 
 											$typename = $type['typename'];
