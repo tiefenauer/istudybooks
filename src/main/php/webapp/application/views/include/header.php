@@ -30,8 +30,21 @@
                 </a>
 	            <a class="brand" href="<?= base_url('') ?>">istudybooks</a>
 	            <div class="nav-collapse">
+	                     <li class="dropdown">
+	                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" href="<?= base_url('/offer/add/') ?>">Artikel eintragen
+	                            <b class="caret"></b>
+	                            </a>
+	                            <ul class="dropdown-menu">
+	                            	<?php foreach ($types as $type): 
+											$typename = $type['typename'];
+												echo '<li><a href="'.site_url('/offer/add/' . $typename). '">'.$typename.' eintragen</a>	</li>';	
+										endforeach ?>
+	                            </ul>
+	                        </li>  
+	                        
+	                        <!--
 	                    <ul class="nav">
-	                    	<li><a href="<?= base_url('/offer/add/') ?>">Artikel eintragen</a>
+	                    	<li>
 	                    		<ul><?php foreach ($types as $type): 
 											$typename = $type['typename'];
 												echo '<li><a href="'.site_url('/offer/add/' . $typename). '">'.$typename.' eintragen</a>	</li>';	
@@ -39,6 +52,7 @@
 								  </ul>
 	                    	</li>
 	                    </ul>
+	                    -->
 	            </div>
 	            <div class="nav-collapse">
 	                    <ul class="nav">
