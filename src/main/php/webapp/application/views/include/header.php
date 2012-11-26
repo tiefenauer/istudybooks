@@ -28,7 +28,13 @@
 	            <a class="brand" href="<?= base_url('') ?>">istudybooks</a>
 	            <div class="nav-collapse">
 	                    <ul class="nav">
-	                    	<li><a href="<?= base_url('/offer/add/book') ?>">Buch eintragen</a></li>
+	                    	<li><a href="<?= base_url('/offer/add/') ?>">Artikel eintragen</a></li>
+	                    	<li>	<ul><?php foreach ($types as $type): 
+											$typename = $type['typename'];
+												echo '<li><a href="'.site_url('/offer/add/' . $typename). '">'.$typename.' eintragen</a>	</li>';	
+										endforeach ?>
+								  </ul>
+	                    	</li>
 	                    </ul>
 	            </div>
 	            <div class="nav-collapse">

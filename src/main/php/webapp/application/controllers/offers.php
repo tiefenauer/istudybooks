@@ -22,11 +22,8 @@ class Offers extends CI_Controller{
 	 * Show offers of a certain type
 	 */
 	public function filter($type='%'){
-		$data['types'] = $this->offers_model->get_types();
 		$data['offers'] = $this->offers_model->get_offers($type);
-		$this->load->view('include/header');
-		$this->load->view('offers_view', $data);
-		$this->load->view('include/footer');
+		$this->load->template('offers_view', $data);
 	}
 
 } 
