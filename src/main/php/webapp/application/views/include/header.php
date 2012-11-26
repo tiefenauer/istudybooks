@@ -30,15 +30,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 </a>
-	            <a class="brand" href="<?= base_url('index.php') ?>">istudybooks</a>
+	            <a class="brand" href="<?= base_url('') ?>">istudybooks</a>
 	            <div class="nav-collapse">
 	                    <ul class="nav">
-	                    	<li><a href="<?= base_url('index.php/offer/add/book') ?>">Buch eintragen</a></li>
+	                    	<li><a href="<?= base_url('/offer/add/book') ?>">Buch eintragen</a></li>
 	                    </ul>
 	            </div>
 	            <div class="nav-collapse">
 	                    <ul class="nav">
-	                    	<li><a href="<?= base_url('index.php/offers') ?>">Angebote</a></li>
+	                    	<li><a href="<?= base_url('/offers') ?>">Angebote</a></li>
 	                    </ul>
 	            </div>	            
             </div>
