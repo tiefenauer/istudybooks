@@ -6,6 +6,9 @@
    <link href="<?= base_url('css/bootstrap.min.css') ?>" rel="stylesheet">
    <link href="<?= base_url('css/bootstrap-responsive.min.css') ?>" rel="stylesheet">
    <link href="<?= base_url('css/docs.css') ?>" rel="stylesheet">  
+   
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+   <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 </head>
 <body>
 <div class="container" id="banner">
