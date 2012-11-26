@@ -8,9 +8,10 @@
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 <script src="<?= base_url('js/bootstrap.min.js') ?>"></script>
 <script src="<?= base_url('js/bootstrap-datepicker.js') ?>"></script>
-   
+  
+  <?php include_once 'javascript/JavaScript.php'; ?> 
 <script type="text/javascript">
-
+	<?= javascript() ?>
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-36135351-1']);
   _gaq.push(['_trackPageview']);
