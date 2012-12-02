@@ -15,8 +15,8 @@ class Offers_model extends CI_Model {
 	 */
 	public function get_offers($type='%') {
 		$sql = '
-				SELECT 
-						offer.pk_offer AS id		
+				SELECT 	fk_article AS articleID
+						,offer.pk_offer AS id		
 						,offer.title AS title
 						,articletype.typename AS articletype
 						,offer.price AS price

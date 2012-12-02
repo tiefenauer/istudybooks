@@ -25,6 +25,7 @@ $active_class = 'class ="active"';
 	<table class="span12 table table-striped table-bordered table-hover">
 		<caption>Laufende Angebote</caption>
 		<thead>
+			<th class="span1">edit</th>
 			<th class="span1">ID</th>
 			<th class="span4">Titel</th>
 			<th class="span2">Typ</th>
@@ -34,6 +35,7 @@ $active_class = 'class ="active"';
 		<!-- Loop over offers -->
 		<?php foreach ($offers as $offer): ?>
 			<tr>
+				<td><a href="<?php echo 'offer/edit/'.$offer['articletype'].'/'.$offer['articleID']; ?>"><?php echo 'edit '.$offer['articletype'] ?></a></td>
 				<td><?php echo $offer['id'] ?></td>
 				<td><?php echo $offer['title'] ?></td>
 				<td><?php echo $offer['articletype'] ?></td>
