@@ -1,9 +1,11 @@
-<?php echo validation_errors(); ?>
+<?php echo validation_errors();
+	$fk_article = !empty($article['fk_article']) ? $article['fk_article'] : false;
+?>
 
-<?=form_open('offer/save/book');?>
+<?=form_open('offer/save/book/'.$fk_article);?>
 
 <?php 
-	$fk_article = !empty($article['fk_article']) ? $article['fk_article'] : false;
+	
 	$offer_fk_article = !empty($offer['fk_article']) ? $offer['fk_article'] : false;
 	
 	$hidden = array('pk_book' => $this->uri->segment(4));

@@ -49,9 +49,10 @@ class Offer extends CI_Controller{
 
 
 /* 	save -> called by controler (from URL)
-	@params: type = type of article as text (URL) 
+	@params: type = type of article as text (URL)
+			articleID = articleID if article is being modified 
  */
-	public function save($type=false){
+	public function save($type=false,$articleID=false){
 		
 		//validate Form:
 		$this->load->helper(array('form', 'url'));
@@ -59,6 +60,11 @@ class Offer extends CI_Controller{
 		
 		$data['article'] = $this->input->post();
 		$data['offer'] = $this->input->post();
+		
+		//if reload after saveing -> redirect to edit page
+		if(empty($data['article']) && $articleID!==false)
+			redirect('/offer/edit/'.$type.'/'.$articleID, 'refresh');
+		
 		$articleID = (isset($data['article']['fk_article'])) ? $data['article']['fk_article'] : false;
 		$edit = ($articleID); //edit = true, if articleID passed
 		if(!is_array($data))$data=array();
