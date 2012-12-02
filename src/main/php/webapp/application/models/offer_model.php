@@ -21,6 +21,9 @@ class offer_model extends CI_Model {
 		return get_object_vars($row[0]);
 	}
 	
+/* 	getArticleTypID -> get ID from type (DB)
+	@params: type = type of article as text (URL)
+ */	
 	public function getArticleTypID($type= false){
 		if($type == false)return false;
 		
@@ -38,8 +41,10 @@ class offer_model extends CI_Model {
 		
 	}
 	
-	
-	public function getOfferData($articleID){
+/* 	getOfferData -> connects to the db and gets the offer data based on an article ID
+	@params: $articleID = ID of article of offer to be loaded (1 article = max 1 offer!)
+ */		
+	public function getOfferData($articleID=false){
 		if($articleID == false)return array();
 		
 		$table = 'tbl_offer';

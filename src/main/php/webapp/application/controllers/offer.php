@@ -8,6 +8,10 @@ class Offer extends CI_Controller{
 		}	
 	}
 	
+/* 	add -> called by controler (from URL)
+	@params: type = type of article as text (URL)
+ */	
+	
 	public function add($type=false){
 		$this->load->helper('form');
 		//$this->load->view('include/header');
@@ -28,6 +32,11 @@ class Offer extends CI_Controller{
 		}
 	}
 	
+/* 	edit -> called by controler (from URL)
+	@params: type = type of article as text (URL) 
+	@params: id = articleID to be edited (URL) 
+ */
+	
 	public function edit($type,$id){
 		$this->load->helper('form');
 		$this->load->model('offer_model');
@@ -38,6 +47,10 @@ class Offer extends CI_Controller{
 	}
 
 
+
+/* 	save -> called by controler (from URL)
+	@params: type = type of article as text (URL) 
+ */
 	public function save($type=false){
 		
 		//validate Form:
@@ -60,9 +73,7 @@ class Offer extends CI_Controller{
 		
 				if ($this->form_validation->run() == FALSE)
 				{
-					//$this->load->view('include/header');
 					$this->load->template('book_edit_view',$data);
-					//$this->load->view('include/footer');
 				}
 				else
 				{
@@ -89,9 +100,6 @@ class Offer extends CI_Controller{
 						$this->db->insert('tbl_book', $data);
 					}	
 					
-					
-				
-				
 					$this->writeToDBend($type,$articleID);
 				}
 			break;
@@ -110,7 +118,13 @@ class Offer extends CI_Controller{
 	}
 
 
-	private function writeToDBinit($type,$articleID){
+/* 	initialises the db entry to be made
+	@params: type = type of article as text (URL)
+	@articleID: id of article (article ID to be edited) (if available)
+	returns array of articleTypeID (ID of type) and articleID 
+ */
+
+	private function writeToDBinit($type,$articleID=false){
 		$this->load->model('offer_model');	
 		$articleTypeID = $this->offer_model->getArticleTypID($type);
 		
@@ -129,11 +143,13 @@ class Offer extends CI_Controller{
 		return array($articleTypeID,$articleID);
 	}
 	
+/* 	writes the db entry
+	@params: type = type of article as text (URL)
+	@articleID: id of article (article ID to be edited) (if available)
+	redirects to edit entry URL
+ */
 	private function writeToDBend($type,$articleID){
 		$price = $this->input->post('price');
-		
-		
-		//$query = $this->db->get_where('tbl_offer', array('fk_article' => $articleID), $limit, $offset);
 		
 		$data = array(
                'fk_article' => $articleID,
