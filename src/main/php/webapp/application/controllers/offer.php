@@ -13,7 +13,7 @@ class Offer extends CI_Controller{
 		//$this->load->view('include/header');
 		
 		
-		//no type provided, sho possible offers to create:
+		//no type provided, show possible offers to create:
 		if($type==false){
 			$this->load->template('offer_view');
 		} else {
@@ -26,58 +26,73 @@ class Offer extends CI_Controller{
 			//create view for input (form)
 			$this->load->template($type . '_edit_view');
 		}
-		
-		//$this->load->view('include/footer');
 	}
 	
 	public function edit($type,$id){
 		$this->load->helper('form');
-		
-		$data = array("id" => $id);
 		$this->load->model('offer_model');
-		$offer = $this->offer_model->getArticleData($type,$id);
+		$data['article'] = $this->offer_model->getArticleData($type,$id);
+		$data['offer'] = $this->offer_model->getOfferData($id);
+		
 		$this->load->template($type . '_edit_view', $data);
 	}
 
 
 	public function save($type=false){
+		
+		//validate Form:
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
+		
+		$data['article'] = $this->input->post();
+		$data['offer'] = $this->input->post();
+		$articleID = (isset($data['article']['fk_article'])) ? $data['article']['fk_article'] : false;
+		$edit = ($articleID); //edit = true, if articleID passed
+		if(!is_array($data))$data=array();
+		
 		switch($type){
 			case 'book':
-				//validate Form:
-				$this->load->helper(array('form', 'url'));
-				$this->load->library('form_validation');
 		
 				$this->form_validation->set_rules('title', 'Titel', 'required|min_length[2]|max_length[30]');
 				$this->form_validation->set_rules('author', 'Author', 'required');
 				$this->form_validation->set_rules('isbn', 'ISBN Number', 'required');
-				$this->form_validation->set_rules('price', 'price', 'required');
 		
 		
 				if ($this->form_validation->run() == FALSE)
 				{
 					//$this->load->view('include/header');
-					$this->load->template('book_edit_view');
+					$this->load->template('book_edit_view',$data);
 					//$this->load->view('include/footer');
 				}
 				else
 				{
-					$articleArray = $this->writeToDBinit($type);
+					//db entry initialize: load type and id of article entry (create one if needed)
+					$articleArray = $this->writeToDBinit($type,$articleID);
 					
 					$articleTypeID = $articleArray[0];
 					$articleID = $articleArray[1];
 					
-					//add book to db:		
+					
 					$data = array(
 			               'fk_article' => $articleID,
 			               'title' => $this->input->post('title'),
 			               'author' => $this->input->post('author'),
 			               'isbn' => $this->input->post('isbn'),
-			               'picture' => $this->input->post('picture'),
+			               'picture' => $this->input->post('picture')
 			        );
-					$this->db->insert('tbl_book', $data);
+					
+					//add book to db:
+					if($edit){
+						$this->db->where('fk_article', $articleID);
+						$this->db->update('tbl_book',$data);
+					} else {
+						$this->db->insert('tbl_book', $data);
+					}	
+					
+					
 				
 				
-					$this->writeToDBend($articleID);
+					$this->writeToDBend($type,$articleID);
 				}
 			break;
 			
@@ -95,11 +110,14 @@ class Offer extends CI_Controller{
 	}
 
 
-	private function writeToDBinit($type){
+	private function writeToDBinit($type,$articleID){
 		$this->load->model('offer_model');	
 		$articleTypeID = $this->offer_model->getArticleTypID($type);
 		
+		//article DS already available:
+		if($articleID!==false)return array($articleTypeID,$articleID);
 		
+		//create new article DS:
 		if( $articleTypeID === false ){
 			show_error('undefined type');
 		}
@@ -111,15 +129,27 @@ class Offer extends CI_Controller{
 		return array($articleTypeID,$articleID);
 	}
 	
-	private function writeToDBend($articleID){
+	private function writeToDBend($type,$articleID){
+		$price = $this->input->post('price');
+		
+		
+		//$query = $this->db->get_where('tbl_offer', array('fk_article' => $articleID), $limit, $offset);
+		
 		$data = array(
                'fk_article' => $articleID,
-               'price' => $this->input->post('price'),
-        );		
-		$this->db->insert('tbl_offer',$data);
+               'price' => $price,
+        );	
+        
+        //check if offer already made:
+        $edit = $this->input->post('order_fk_article');
+		if(!empty($edit)){
+			$this->db->where('fk_article', $articleID);
+			$this->db->update('tbl_offer',$data);
+		} else if(!empty($price)){
+			$this->db->insert('tbl_offer',$data);	
+		}
+		redirect('/offer/edit/'.$type.'/'.$articleID, 'refresh');
 		
-		
-		die('saved successfully!');
 	}
 
 } 

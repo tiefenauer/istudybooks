@@ -5,9 +5,20 @@ class offer_model extends CI_Model {
 		
 	}
 	
-	public function getArticleData(){
+	public function getArticleData($type,$id){
+		if($type == false)return array();
 		
+		$table = 'tbl_'.$type;
+		$query = $this->db->query('SELECT * FROM '.$table.' where fk_article = "'.$id.'"');
+		$row = $query->result();
 		
+		if( count($row)==0){
+			return false;
+		}
+		if( empty($id) ){
+			return false;
+		}
+		return get_object_vars($row[0]);
 	}
 	
 	public function getArticleTypID($type= false){
@@ -26,6 +37,21 @@ class offer_model extends CI_Model {
 		return $id;
 		
 	}
+	
+	
+	public function getOfferData($articleID){
+		if($articleID == false)return array();
+		
+		$table = 'tbl_offer';
+		$query = $this->db->query('SELECT * FROM '.$table.' where fk_article = "'.$articleID.'"');
+		$row = $query->result();
+		if( count($row)==0){
+			return false;
+		}
+		return get_object_vars($row[0]);
+	}
+	
+
 }
 
 
