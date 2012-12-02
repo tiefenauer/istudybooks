@@ -6,6 +6,9 @@
    <link href="<?= base_url('css/bootstrap.min.css') ?>" rel="stylesheet">
    <link href="<?= base_url('css/bootstrap-responsive.min.css') ?>" rel="stylesheet">
    <link href="<?= base_url('css/docs.css') ?>" rel="stylesheet">  
+   
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+   <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 </head>
 <body>
 <div class="container" id="banner">
@@ -27,26 +30,19 @@
                 </a>
 	            <a class="brand" href="<?= base_url('') ?>">istudybooks</a>
 	            <div class="nav-collapse">
-	                    <ul class="nav">
-	                        <li class="dropdown">
-	                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Artikel eintragen
-	                            <b class="caret"></b>
-	                            </a>
-	                            <ul class="dropdown-menu">
-	                            	<?php foreach ($types as $type): 
-											$typename = $type['typename'];
-												echo '<li><a href="'.site_url('/offer/add/' . $typename). '">'.$typename.' eintragen</a>	</li>';	
-										endforeach ?>
-	                            </ul>
-	                        </li>               	
-	                    	<li><a href="<?= base_url('/offer/add/') ?>">Artikel eintragen</a>
-	                    		<ul><?php foreach ($types as $type): 
-											$typename = $type['typename'];
-												echo '<li><a href="'.site_url('/offer/add/' . $typename). '">'.$typename.' eintragen</a>	</li>';	
-										endforeach ?>
-								  </ul>
-	                    	</li>
-	                    </ul>
+			       <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Artikel eintragen
+                            <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                            	<?php foreach ($types as $type): 
+										$typename = $type['typename'];
+											echo '<li><a href="'.site_url('/offer/add/' . $typename). '">'.$typename.' eintragen</a>	</li>';	
+									endforeach ?>
+                            </ul>
+                    	</li>
+                    </ul>
 	            </div>
 	            <div class="nav-collapse">
 	                    <ul class="nav">
