@@ -12,7 +12,7 @@
 ?>
 <?=form_hidden($hidden);?>
     
-    <?php $text = ($fk_article !== false) ? 'edit article' : 'create article'; ?>
+    <?php $text = ($fk_article !== false) ? 'edit article' : 'create book'; ?>
     <h3><?php echo $text; ?></h3>
     
     <div class="row">
