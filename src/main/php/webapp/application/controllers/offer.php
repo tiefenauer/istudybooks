@@ -95,6 +95,7 @@ class Offer extends CI_Controller{
 			               'title' => $this->input->post('title'),
 			               'author' => $this->input->post('author'),
 			               'isbn' => $this->input->post('isbn'),
+			               'edition' => $this->input->post('edition'),
 			               'picture' => $this->input->post('picture')
 			        );
 					
@@ -159,6 +160,7 @@ class Offer extends CI_Controller{
 		
 		$data = array(
                'fk_article' => $articleID,
+               'expires'	=> $this->input->post('expires'),
                'price' => $price,
         );	
         
