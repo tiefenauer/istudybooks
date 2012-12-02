@@ -15,8 +15,8 @@ class MY_Loader extends CI_Loader
     public function template($template_name, $vars = array(), $return = FALSE)
     {   
     	$CI = get_instance();
-        $CI->load->model('offers_model');
-		$data['types'] = $CI->offers_model->get_types();
+        $CI->load->model('factory');
+		$data['types'] = $CI->factory->getArticleTypes();
 		$vars = array_merge($data,$vars);
 		
 		$content  = $this->view('include/header', $vars, $return);

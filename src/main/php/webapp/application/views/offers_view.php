@@ -35,11 +35,11 @@ $active_class = 'class ="active"';
 		<!-- Loop over offers -->
 		<?php foreach ($offers as $offer): ?>
 			<tr>
-				<td><a href="<?php echo site_url('/offer/edit/'.$offer['articletype'].'/'.$offer['articleID']); ?>"><?php echo 'edit '.$offer['articletype'] ?></a></td>
-				<td><?php echo $offer['id'] ?></td>
-				<td><?php echo $offer['title'] ?></td>
-				<td><?php echo $offer['articletype'] ?></td>
-				<td><?php echo $offer['price'] ?></td>
+				<td><a href="<?php echo site_url('/offer/edit/'.$offer->getArticle()->getType().'/'.$offer->getId()); ?>"><?php echo 'edit '.$offer->getArticle()->getType() ?></a></td>
+				<td><?php echo $offer->getId() ?></td>
+				<td><?php echo $offer->getArticle()->getTitle() ?></td>
+				<td><?php echo $offer->getArticle()->getType() ?></td>
+				<td><?php echo $offer->getPrice() ?></td>
 			</tr>
 		<?php endforeach ?>
 			

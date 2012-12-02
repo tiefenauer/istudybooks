@@ -22,8 +22,8 @@ class Offer extends CI_Controller{
 			$this->load->template('offer_view');
 		} else {
 		
-			$this->load->model('offer_model');	
-			$articleTypeID = $this->offer_model->getArticleTypID($type);
+			$this->load->model('factory');	
+			$articleTypeID = $this->factory->getArticleTypeId($type);
 			if( $articleTypeID === false ){
 				show_error('undefined type');
 			}
@@ -39,9 +39,10 @@ class Offer extends CI_Controller{
 	
 	public function edit($type,$id){
 		$this->load->helper('form');
-		$this->load->model('offer_model');
-		$data['article'] = $this->offer_model->getArticleData($type,$id);
-		$data['offer'] = $this->offer_model->getOfferData($id);
+		$this->load->model('factory');
+		$this->load->model('implementation/offer_model');
+		$this->load->model('implementation/book_model');		
+		$data['offer'] = $this->factory->getOffer($id);
 		
 		$this->load->template($type . '_edit_view', $data);
 	}
@@ -131,8 +132,10 @@ class Offer extends CI_Controller{
  */
 
 	private function writeToDBinit($type,$articleID=false){
-		$this->load->model('offer_model');	
-		$articleTypeID = $this->offer_model->getArticleTypID($type);
+		$this->load->model('factory');	
+		$this->load->model('implementation/offer_model');
+		$this->load->model('implementation/book_model');		
+		$articleTypeID = $this->factory->getArticleTypeId($type);
 		
 		//article DS already available:
 		if($articleID!==false)return array($articleTypeID,$articleID);
