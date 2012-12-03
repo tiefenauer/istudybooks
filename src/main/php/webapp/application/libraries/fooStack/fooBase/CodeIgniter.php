@@ -36,21 +36,21 @@ define('CI_VERSION',	'1.7.2');
  * ------------------------------------------------------
  */
 //require(BASEPATH.'codeigniter/Common'.EXT);
-require(APPPATH.'libraries/fooStack/fooBase/Common.php');
+require(BASEPATH.'application/libraries/fooStack/fooBase/Common.php');
 
 /*
  * ------------------------------------------------------
  *  Load the compatibility override functions
  * ------------------------------------------------------
  */
-require(BASEPATH.'codeigniter/Compat'.EXT);
+//require(BASEPATH.'codeigniter/Compat'.EXT);
 
 /*
  * ------------------------------------------------------
  *  Load the framework constants
  * ------------------------------------------------------
  */
-require(APPPATH.'config/constants'.EXT);
+require(BASEPATH.'application/config/constants'.EXT);
 
 /*
  * ------------------------------------------------------

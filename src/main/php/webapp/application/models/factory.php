@@ -106,7 +106,7 @@ class Factory extends CI_Model {
 		';
 		$query = $this->db->query($sql);
 		$row = $query->result();
-		
+		print_r($row);
 		if( count($row)==0){
 			return false;
 		}

@@ -6,9 +6,16 @@
 <script src="<?= base_url('js/bootstrap.min.js') ?>"></script>
 <script src="<?= base_url('js/bootstrap-datepicker.js') ?>"></script>
   
-  <?php include_once 'javascript/JavaScript.php'; ?> 
 <script type="text/javascript">
-	<?= javascript() ?>
+	 
+  	$(document).ready(function() {
+        $('ul.nav>li').hover(function(){
+        	$(this).children('ul').slideDown();
+        },function(){
+        	$(this).children('ul').slideUp();
+        });
+     });
+
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-36135351-1']);
   _gaq.push(['_trackPageview']);

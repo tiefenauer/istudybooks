@@ -1,25 +1,25 @@
 <?php echo validation_errors();
-	$fk_article = !empty($article['fk_article']) ? $article['fk_article'] : false;
+
+	$article_ID = !empty($article->getId()) ? $article->getId() : false;
 ?>
 
-<?=form_open('offer/save/book/'.$fk_article);?>
+<?=form_open('offer/save/book/'.$article_ID);?>
 
-<?php 
-	
-	$offer_fk_article = !empty($offer['fk_article']) ? $offer['fk_article'] : false;
-	
+<?php ;
+	$offer_ID = !empty($offer->getId()) ? $offer->getId() : false;
+
 	$hidden = array('pk_book' => $this->uri->segment(4));
-	if($fk_article!==false)$hidden['fk_article'] = $fk_article;
-	if($offer_fk_article!==false)$hidden['order_fk_article'] = $offer_fk_article;
+	if($article_ID!==false)$hidden['fk_article'] = $article_ID;
+	if($offer_ID!==false)$hidden['order_fk_article'] = $offer_ID;
 ?>
 <?=form_hidden($hidden);?>
     
-    <?php $text = ($fk_article !== false) ? 'edit article' : 'create book'; ?>
+    <?php $text = ($article_ID !== false) ? 'edit article' : 'create book'; ?>
     <h3><?php echo $text; ?></h3>
     
     <div class="row">
     	<div class="span2"><label for="title">Buchname: </label></div>
-    	<div class="span3"><input name="title" type="text" required="required" placeholder="Titel des Buches" value="<?= @$article['title'] ?>" /></div>
+    	<div class="span3"><input name="title" type="text" required="required" placeholder="Titel des Buches" value="<?= @$article->getTitle('title') ?>" /></div>
     </div>
     <div class="row">
     	<div class="span2"><label for="author">Author: </label></div>
@@ -39,7 +39,7 @@
     </div>	   
     
     
-    <?php $text = ($offer_fk_article) ? 'edit offer' : 'create offer'; ?>
+    <?php $text = ($offer_ID) ? 'edit offer' : 'create offer'; ?>
     <h3><?php echo $text; ?></h3>
      
     <div class="row">
@@ -52,7 +52,7 @@
     </div>
 		
 		
-	<?php $text = ($fk_article !== false) ? 'save' : 'create';
+	<?php $text = ($article_ID !== false) ? 'save' : 'create';
 	echo '<input name="submit" type="submit" value="'.$text.'" />';
 	?>
 </form>

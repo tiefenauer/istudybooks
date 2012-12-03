@@ -42,6 +42,8 @@ class Offer extends CI_Controller{
 		$this->load->model('factory');
 		$this->load->model('implementation/offer_model');
 		$this->load->model('implementation/book_model');		
+		
+		$data['article'] = $this->factory->getArticle($id);
 		$data['offer'] = $this->factory->getOffer($id);
 		
 		$this->load->template($type . '_edit_view', $data);

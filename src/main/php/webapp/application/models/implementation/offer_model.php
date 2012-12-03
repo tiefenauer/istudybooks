@@ -9,6 +9,7 @@ class offer_model extends CI_Model {
 	 */		 
 	public function __construct($id=false)
 	{
+		
 		if($id != false){
 			$this->id=$id;
 			$sql = '

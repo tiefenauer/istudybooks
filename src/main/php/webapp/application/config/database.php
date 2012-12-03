@@ -66,12 +66,6 @@ $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
-/*
-$env_used = 'default'; //name of your development setting
-if(defined('CIUnit_Version')){
-  $env_used .= '_test';
-}
-$active_group = $env_used;
-*/
+
 /* End of file database.php */
 /* Location: ./application/config/database.php */
