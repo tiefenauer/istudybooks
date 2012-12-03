@@ -1,9 +1,7 @@
 <?php
 class Factory
 {
-	$articleArray = (
-						CONST_TYPE_BOOK => Book.class
-					);
+	private $articleArray = array( CONST_TYPE_BOOK => Book.class );
 					
 	static public function getOffers($articleType = CONST_TYPE_EMPTY){
 		$offers = array();

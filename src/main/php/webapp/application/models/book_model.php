@@ -1,7 +1,7 @@
 <?php
 class book_model extends CI_Model implements IOrder {
-	$id = 0;
-	$dataDTO = array();
+	private $id = 0;
+	private $dataDTO = array();
 	
     public function getId(){
     	

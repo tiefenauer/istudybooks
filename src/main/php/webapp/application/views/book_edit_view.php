@@ -1,12 +1,13 @@
 <?php echo validation_errors();
-
-	$article_ID = !empty($article->getId()) ? $article->getId() : false;
+	$article_ID = $article->getId();
+	$article_ID = (!empty($article_ID)) ? $article_ID: false;
 ?>
 
 <?=form_open('offer/save/book/'.$article_ID);?>
 
-<?php ;
-	$offer_ID = !empty($offer->getId()) ? $offer->getId() : false;
+<?php 
+	$offer_ID = $offer->getId();
+	$offer_ID = !empty($offer_ID) ? $offer_ID : false;
 
 	$hidden = array('pk_book' => $this->uri->segment(4));
 	if($article_ID!==false)$hidden['fk_article'] = $article_ID;
