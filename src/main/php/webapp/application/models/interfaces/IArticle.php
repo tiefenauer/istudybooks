@@ -7,7 +7,7 @@ interface IArticle
     public function getType();
 	public function setType($type);		
 	public function getTitle();	
-    public function getData();
+    public function getData($element=false);
 	public function setData($inDTO);
 	public function getTabel();
 }

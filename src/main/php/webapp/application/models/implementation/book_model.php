@@ -50,8 +50,16 @@ class book_model extends CI_Model {
 		return $this->dataDTO["title"];
 	}	
 		
-    public function getData(){
-    	return $this->dataDTO;
+    public function getData($element=false){
+    	if($element==false){
+    		return $this->dataDTO;
+		} else {
+			if(isset($this->dataDTO[$element])){
+				return $this->dataDTO[$element];
+			} else {
+				return "";
+			}
+		}
     }
 	
 	public function setData($inDTO){

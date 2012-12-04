@@ -69,7 +69,7 @@ class Offer extends CI_Controller{
 	 * @param type = type of article as text (URL)
 	 * @param articleID = articleID if article is being modified
 	 */	 
-	public function save($type=false,$articleID=false){
+	public function save($type=false,$offer_ID=false){
 		
 		//validate Form:
 		$this->load->helper(array('form', 'url'));
@@ -79,11 +79,12 @@ class Offer extends CI_Controller{
 		$data['offer'] = $this->input->post();
 		
 		//if reload after saveing -> redirect to edit page
-		if(empty($data['article']) && $articleID!==false)
-			redirect('/offer/edit/'.$type.'/'.$articleID, 'refresh');
+		if(empty($data['article']) && $offer_ID!==0)
+			redirect('/offer/edit/'.$type.'/'.$offer_ID, 'refresh');
 		
-		$articleID = (isset($data['article']['fk_article'])) ? $data['article']['fk_article'] : false;
-		$edit = ($articleID); //edit = true, if articleID passed
+		$articleID = $this->input->post("fk_article");
+		
+		$edit = ($offer_ID != 0); //edit = true, if articleID passed
 		if(!is_array($data))$data=array();
 		
 		switch($type){
@@ -124,7 +125,7 @@ class Offer extends CI_Controller{
 						$this->db->insert('tbl_book', $data);
 					}	
 					
-					$this->writeToDBend($type,$articleID);
+					$this->writeToDBend($type,$offer_ID,$articleID);
 				}
 			break;
 			
@@ -148,14 +149,14 @@ class Offer extends CI_Controller{
 	 * @param articleID = id of article (article ID to be edited) (if available)
 	 * @return  array of articleTypeID (ID of type) and articleID
 	 */	 
-	private function writeToDBinit($type,$articleID=false){
+	private function writeToDBinit($type,$articleID=0){	
 		$this->load->model('factory');	
 		$this->load->model('implementation/offer_model');
 		$this->load->model('implementation/book_model');		
 		$articleTypeID = $this->factory->getArticleTypeId($type);
 		
 		//article DS already available:
-		if($articleID!==false)return array($articleTypeID,$articleID);
+		if($articleID!=0)return array($articleTypeID,$articleID);
 		
 		//create new article DS:
 		if( $articleTypeID === false ){
@@ -165,7 +166,7 @@ class Offer extends CI_Controller{
                'fk_articletype' => $articleTypeID
         );
 		$this->db->insert('tbl_article',$data);
-        $articleID = $this->db->insert_id();	
+        $articleID = $this->db->insert_id();
 		return array($articleTypeID,$articleID);
 	}
 
@@ -173,10 +174,11 @@ class Offer extends CI_Controller{
 	 * Writes the db entry
 	 * 
 	 * @param type = type of article as text (URL)
+	 * @param offerID = id of offer
 	 * @param articleID = id of article (article ID to be edited) (if available)
 	 * redirects to edit entry URL
 	 */	 	
-	private function writeToDBend($type,$articleID){
+	private function writeToDBend($type,$offerID,$articleID){
 		$price = $this->input->post('price');
 		
 		$data = array(
@@ -191,9 +193,10 @@ class Offer extends CI_Controller{
 			$this->db->where('fk_article', $articleID);
 			$this->db->update('tbl_offer',$data);
 		} else if(!empty($price)){
-			$this->db->insert('tbl_offer',$data);	
+			$this->db->insert('tbl_offer',$data);
+			$offerID = $this->db->insert_id();	
 		}
-		redirect('/offer/edit/'.$type.'/'.$articleID, 'refresh');
+		redirect('/offer/edit/'.$type.'/'.$offerID, 'refresh');
 		
 	}
 

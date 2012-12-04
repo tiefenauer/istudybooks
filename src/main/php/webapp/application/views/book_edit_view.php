@@ -1,16 +1,16 @@
 <?php echo validation_errors();
 	$article = $offer->getArticle();
 	$article_ID = $article->getId();
+	$offer_ID = $offer->getId();
 ?>
 
-<?=form_open('offer/save/book/'.$article_ID);?>
+<?=form_open('offer/save/book/'.$offer_ID);?>
 
-<?php 
-	$offer_ID = $offer->getId();
+<?php
 
 	$hidden = array('pk_book' => $this->uri->segment(4));
 	if($article_ID!==false)$hidden['fk_article'] = $article_ID;
-	if($offer_ID!==false)$hidden['order_fk_article'] = $offer_ID;
+	if($offer_ID!==false)$hidden['offer_ID'] = $offer_ID;
 ?>
 <?=form_hidden($hidden);?>
     
@@ -23,15 +23,15 @@
     </div>
     <div class="row">
     	<div class="span2"><label for="author">Author: </label></div>
-    	<div class="span3"><input name="author" type="text" required="required" placeholder="Author des Buches" value="<?= @$article->getData()->author ?>" /></div>
+    	<div class="span3"><input name="author" type="text" required="required" placeholder="Author des Buches" value="<?= @$article->getData("author") ?>" /></div>
     </div>
     <div class="row">
     	<div class="span2"><label for="edition">Edition: </label></div>
-    	<div class="span3"><input name="edition" type="text" placeholder="Edition des Buches"  value="<?= @$article->getData()->edition ?>" /></div>
+    	<div class="span3"><input name="edition" type="text" placeholder="Edition des Buches"  value="<?= @$article->getData("edition") ?>" /></div>
     </div>	
     <div class="row">
     	<div class="span2"><label for="isbn">ISBN: </label></div>
-    	<div class="span3"><input name="isbn" type="text" required="required" placeholder="ISBN Nummer des Buches" value="<?= @$article->getData()->isbn ?>" /></div>
+    	<div class="span3"><input name="isbn" type="text" required="required" placeholder="ISBN Nummer des Buches" value="<?= @$article->getData("isbn") ?>" /></div>
     </div>	
     <div class="row">
     	<div class="span2"><label for="picture">Bild: </label></div>
