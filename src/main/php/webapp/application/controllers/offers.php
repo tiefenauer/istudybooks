@@ -15,6 +15,8 @@ class Offers extends CI_Controller{
 	
 	/**
 	 * Default function
+	 * 
+	 * Load tabel of offers with filter "%"
 	 */
 	public function index(){
 		$this->filter('%');
@@ -22,6 +24,8 @@ class Offers extends CI_Controller{
 	
 	/**
 	 * Show offers of a certain type
+	 * 
+	 * @param type: offer type
 	 */
 	public function filter($type='%'){
 		$data['offers'] = $this->factory->getOffers($type);

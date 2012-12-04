@@ -7,6 +7,10 @@ class book_model extends CI_Model {
 	
 	/**
 	 * Constructor
+	 * 
+	 * Create a new book object, if a id is given the data will be read from database
+	 * 
+	 * @param id = article id (optional)
 	 */		 
 	public function __construct($id=false)
 	{

@@ -1,6 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Offer extends CI_Controller{
+	
 	public function index(){
 		//redirect to offers if no action requested on offer!
 		if( $this->uri->segment(3) == false ){
@@ -8,10 +9,13 @@ class Offer extends CI_Controller{
 		}	
 	}
 	
-/* 	add -> called by controler (from URL)
-	@params: type = type of article as text (URL)
- */	
-	
+	/** 
+	 * Called by controller (from URL)
+	 * 
+	 * Open a window with a form to fill in a offer
+	 * 
+	 * @param type = type of article as text (URL)
+	 */
 	public function add($type=false){
 		$this->load->helper('form');
 		//$this->load->view('include/header');
@@ -31,12 +35,15 @@ class Offer extends CI_Controller{
 			$this->load->template($type . '_edit_view');
 		}
 	}
-	
-/* 	edit -> called by controler (from URL)
-	@params: type = type of article as text (URL) 
-	@params: id = articleID to be edited (URL) 
- */
-	
+
+ 	/** 
+	 * Called by controller (from URL)
+	 * 
+	 * Open a window with a form to edit a offer
+	 * 
+	 * @param type = type of article as text (URL)
+	 * @param id = articleID to be edited (URL)
+	 */	
 	public function edit($type,$id){
 		$this->load->helper('form');
 		$this->load->model('factory');
@@ -50,11 +57,14 @@ class Offer extends CI_Controller{
 	}
 
 
-
-/* 	save -> called by controler (from URL)
-	@params: type = type of article as text (URL)
-			articleID = articleID if article is being modified 
- */
+  	/** 
+	 * Called by controller (from URL)
+	 * 
+	 * Save the offer
+	 * 
+	 * @param type = type of article as text (URL)
+	 * @param articleID = articleID if article is being modified
+	 */	 
 	public function save($type=false,$articleID=false){
 		
 		//validate Form:
@@ -127,13 +137,13 @@ class Offer extends CI_Controller{
 		
 	}
 
-
-/* 	initialises the db entry to be made
-	@params: type = type of article as text (URL)
-	@articleID: id of article (article ID to be edited) (if available)
-	returns array of articleTypeID (ID of type) and articleID 
- */
-
+   	/** 
+	 * Initialises the db entry to be made
+	 * 
+	 * @param type = type of article as text (URL)
+	 * @param articleID = id of article (article ID to be edited) (if available)
+	 * @return  array of articleTypeID (ID of type) and articleID
+	 */	 
 	private function writeToDBinit($type,$articleID=false){
 		$this->load->model('factory');	
 		$this->load->model('implementation/offer_model');
@@ -154,12 +164,14 @@ class Offer extends CI_Controller{
         $articleID = $this->db->insert_id();	
 		return array($articleTypeID,$articleID);
 	}
-	
-/* 	writes the db entry
-	@params: type = type of article as text (URL)
-	@articleID: id of article (article ID to be edited) (if available)
-	redirects to edit entry URL
- */
+
+   	/** 
+	 * Writes the db entry
+	 * 
+	 * @param type = type of article as text (URL)
+	 * @param articleID = id of article (article ID to be edited) (if available)
+	 * redirects to edit entry URL
+	 */	 	
 	private function writeToDBend($type,$articleID){
 		$price = $this->input->post('price');
 		

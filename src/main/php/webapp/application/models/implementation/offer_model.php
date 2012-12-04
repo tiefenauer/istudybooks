@@ -2,11 +2,16 @@
 class offer_model extends CI_Model {
 	private $id = 0;
 	private $price = 0;
+	private $expDate = "";
 	private $article = null;
 
 	/**
 	 * Constructor
-	 */		 
+	 * 
+	 * Create a new offer object, if a id is given the data will be read from database
+	 * 
+	 * @param id = offer id (optional)
+	 */	 
 	public function __construct($id=false)
 	{
 		
@@ -15,7 +20,8 @@ class offer_model extends CI_Model {
 			$sql = '
 					SELECT 	
 							fk_article,
-							price
+							price,
+							expires
 					
 					FROM tbl_offer			
 					WHERE
@@ -24,6 +30,7 @@ class offer_model extends CI_Model {
 			$query = $this->db->query($sql);
 			$data = $query->result_array();
 			$this->price = $data[0]["price"];
+			$this->expDate = $data[0]["expires"];
 			$this->article = Factory::getArticle($data[0]["fk_article"]);
 		}
 	}		
@@ -43,6 +50,14 @@ class offer_model extends CI_Model {
 	public function setPrice($price){
 		$this->price = $price;
 	}
+	
+	public function getDate(){
+		return $this->expDate;
+	}
+	
+	public function setDate($date){
+		$this->expDate = $date;
+	}	
 	
     public function getArticle(){
     	return $this->article;

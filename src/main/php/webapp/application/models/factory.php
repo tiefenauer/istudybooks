@@ -13,8 +13,6 @@ class Factory extends CI_Model {
 	/**
 	 * Get list of all offers (from a type) from database
 	 * 
-	 * result_array includes: primary key of offer, title of offer
-	 * 
 	 * @param type (optional, default '%')
 	 * @return array of offer objects
 	 */
