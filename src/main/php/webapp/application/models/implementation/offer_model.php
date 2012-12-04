@@ -33,6 +33,7 @@ class offer_model extends CI_Model {
 			$this->expDate = $data[0]["expires"];
 			$this->article = Factory::getArticle($data[0]["fk_article"]);
 		}
+		
 	}		
 	
     public function getId(){
@@ -64,9 +65,9 @@ class offer_model extends CI_Model {
     }
 	
 	public function setArticle($article){
-		if ($article instanceof IArticle) {
+		//if ($article instanceof IArticle) {
 			$this->article = $article;
-		}
+		//}
 	}
 }
 

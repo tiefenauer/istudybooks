@@ -26,13 +26,18 @@ class Offer extends CI_Controller{
 			$this->load->template('offer_view');
 		} else {
 		
-			$this->load->model('factory');	
+			$this->load->model('factory');
+			$this->load->model('implementation/offer_model');
+			$this->load->model('implementation/book_model');	
 			$articleTypeID = $this->factory->getArticleTypeId($type);
 			if( $articleTypeID === false ){
 				show_error('undefined type');
 			}
+			$offer=$this->factory->getOffer();
+			$offer->setArticle(new book_model());
+			$data['offer']=$offer;
 			//create view for input (form)
-			$this->load->template($type . '_edit_view');
+			$this->load->template($type . '_edit_view', $data);
 		}
 	}
 
@@ -50,7 +55,6 @@ class Offer extends CI_Controller{
 		$this->load->model('implementation/offer_model');
 		$this->load->model('implementation/book_model');		
 		
-		$data['article'] = $this->factory->getArticle($id);
 		$data['offer'] = $this->factory->getOffer($id);
 		
 		$this->load->template($type . '_edit_view', $data);

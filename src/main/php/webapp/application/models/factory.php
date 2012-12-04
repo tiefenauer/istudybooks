@@ -45,7 +45,10 @@ class Factory extends CI_Model {
 	 * @param offerId
 	 * @return offer object 
 	 */
-	public function getOffer($offerId) {
+	public function getOffer($offerId=false) {
+		if ($offerId == false){
+			return new offer_model();
+		}
 		return new offer_model($offerId);
 	}	
 	
@@ -104,7 +107,6 @@ class Factory extends CI_Model {
 		';
 		$query = $this->db->query($sql);
 		$row = $query->result();
-		print_r($row);
 		if( count($row)==0){
 			return false;
 		}
