@@ -77,7 +77,7 @@ $active_group = $env_used;
 $db['default_test']['hostname'] = 'www.tiefenauer.info';
 $db['default_test']['username'] = 'istudy';
 $db['default_test']['password'] = 'UxDHy45zv8jCxR32';
-$db['default_test']['database'] = 'istory_test';
+$db['default_test']['database'] = 'istudy_test';
 //maybe we have to use this: 
 $db['default_test']['port'] = 3306;
 $db['default_test']['dbdriver'] = 'mysql';
