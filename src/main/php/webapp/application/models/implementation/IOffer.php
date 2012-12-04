@@ -1,6 +1,6 @@
 <?php
-// Deklariere das Interface 'IOrder'
-interface IOrder
+// Deklariere das Interface 'IOffer'
+interface IOffer
 {
     public function getId();
 	public function setId($id);	

@@ -1,5 +1,7 @@
 <?php
-class book_model extends CI_Model {
+include_once("IArticle.php");
+
+class book_model extends CI_Model implements IArticle {
 	private $id = 0;
 	private $type = "book";
 	private $dataDTO = array();

@@ -1,5 +1,8 @@
 <?php
-class offer_model extends CI_Model {
+include_once("IOffer.php");
+include_once("IArticle.php");
+
+class offer_model extends CI_Model implements IOffer {
 	private $id = 0;
 	private $price = 0;
 	private $expDate = "";
@@ -65,9 +68,9 @@ class offer_model extends CI_Model {
     }
 	
 	public function setArticle($article){
-		//if ($article instanceof IArticle) {
+		if ($article instanceof IArticle) {
 			$this->article = $article;
-		//}
+		}
 	}
 }
 
