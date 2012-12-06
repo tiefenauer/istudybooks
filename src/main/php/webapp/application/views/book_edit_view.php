@@ -57,5 +57,9 @@
 	?>
 </form>
 <script>
-	$('#expires').datepicker({format: 'dd.mm.yyyy'}).on('changeDate', function(ev){$('#expires').datepicker('hide')});
+$(document).ready(function(){
+	$('#expires').datepicker({ format: 'yyyy-mm-dd' }); //.on('changeDate', function(ev){
+		/*$('#expires').datepicker('hide')*/
+		/**$.datepicker.formatDate('dd-mm-yy', dateTypeVar);*/
+});
 </script>
