@@ -4,7 +4,7 @@ class Offer extends CI_Controller{
 	
 	public function index(){
 		//redirect to offers if no action requested on offer!
-		if( $this->uri->segment(3) == false ){
+		if( $this->uri->segment(3) == 0 ){
 				redirect('/offers', 'refresh');
 		}	
 	}
@@ -69,7 +69,7 @@ class Offer extends CI_Controller{
 	 * @param type = type of article as text (URL)
 	 * @param articleID = articleID if article is being modified
 	 */	 
-	public function save($type=false,$offer_ID=false){
+	public function save($type=false,$offer_ID=0){
 		
 		//validate Form:
 		$this->load->helper(array('form', 'url'));
@@ -189,10 +189,10 @@ class Offer extends CI_Controller{
         
         //check if offer already made:
         $edit = $this->input->post('order_fk_article');
-		if(!empty($edit)){
+		if($offerID != 0){
 			$this->db->where('fk_article', $articleID);
 			$this->db->update('tbl_offer',$data);
-		} else if(!empty($price)){
+		} else {
 			$this->db->insert('tbl_offer',$data);
 			$offerID = $this->db->insert_id();	
 		}
