@@ -33,13 +33,18 @@ $active_class = 'class ="active"';
 		</thead>
 		<tbody>
 		<!-- Loop over offers -->
-		<?php foreach ($offers as $offer): ?>
+		<?php foreach ($offers as $offer):
+			$id =  $offer->getId();
+			$type = $offer->getArticle()->getType();
+			$title = $offer->getArticle()->getTitle();
+			$price = $offer->getPrice();
+			?>
 			<tr>
-				<td><a href="<?php echo site_url('/offer/edit/'.$offer->getArticle()->getType().'/'.$offer->getId()); ?>"><?php echo 'edit '.$offer->getArticle()->getType() ?></a></td>
-				<td><?php echo $offer->getId() ?></td>
-				<td><?php echo $offer->getArticle()->getTitle() ?></td>
-				<td><?php echo $offer->getArticle()->getType() ?></td>
-				<td><?php echo $offer->getPrice() ?></td>
+				<td><a href="<?php echo site_url('/offer/edit/'.$type.'/'.$id); ?>"><?='edit '.$type ?></a></td>
+				<td><?=$id ?></td>
+				<td style="cursor: hand;"><a href="<?php echo site_url('/offer/view/'.$id ) ?>"><?=$title ?></a></td>
+				<td><?=$type ?></td>
+				<td><?=$price ?></td>
 			</tr>
 		<?php endforeach ?>
 			
@@ -47,3 +52,8 @@ $active_class = 'class ="active"';
 		
 	</table>
 </div>
+<script>
+	$(".view_offer").click(function() {
+  		window.location.href = $(this).find('a').attr('href');
+	});
+</script>
