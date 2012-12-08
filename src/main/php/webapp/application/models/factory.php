@@ -32,6 +32,8 @@ class Factory extends CI_Model {
 		';
 		$query = $this->db->query($sql);
 		$offers = $query->result_array();
+		
+		
 		$offersArray = array();
 		foreach ($offers as $offer){
 			$offersArray[]=new offer_model($offer['id']);
@@ -58,13 +60,17 @@ class Factory extends CI_Model {
 	 * @return result_array of sql query 
 	 */
 	public function getArticleTypes() {
-		$sql = '
+		/*$sql = '
 				SELECT DISTINCT articletype.typename
 				  FROM tbl_offer AS offer
 				  JOIN tbl_article AS article
 				    ON article.pk_article = offer.fk_article
 				  JOIN tbl_articletype AS articletype
 				    ON articletype.pk_articletype = article.fk_articletype
+		';*/
+		$sql = '
+				SELECT typename
+				  FROM tbl_articletype
 		';
 		$query = $this->db->query($sql);
 		return $query->result_array();

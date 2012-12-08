@@ -25,7 +25,7 @@ class Offer extends CI_Controller{
 		if($type==false){
 			$this->load->template('offer_view');
 		} else {
-		
+			
 			$this->load->model('factory');
 			$this->load->model('implementation/offer_model');
 			$this->load->model('implementation/book_model');	
@@ -56,10 +56,33 @@ class Offer extends CI_Controller{
 		$this->load->model('implementation/book_model');		
 		
 		$data['offer'] = $this->factory->getOffer($id);
-		
+		if($data['offer']->getID() === false || $data['offer']->getID() === 0){
+			$this->session->set_userdata(array('notification' => 'Offer has been not been found, create a new one'));
+			redirect('/offer/add/'.$type.'/0', 'refresh');
+		}
 		$this->load->template($type . '_edit_view', $data);
 	}
 
+ 	/** 
+	 * Called by controller (from URL)
+	 * 
+	 * Open a window removes offer and its article
+	 */	
+	public function delete($type,$offer_ID){
+		 $query = $this->db->get_where('tbl_offer', array('pk_offer' => $offer_ID), 1, 0);
+		 $row = $query->result_array();
+		 $row = $row[0];
+		 
+		 $this->db->where('pk_offer', $offer_ID); 
+		 $this->db->delete('tbl_offer'); 
+		 $this->db->where('pk_article', $row['fk_article']); 
+		 $this->db->delete('tbl_article'); 
+		 $this->db->where('fk_article', $row['fk_article']); 
+		 $this->db->delete('tbl_book'); 
+		 
+		$this->session->set_userdata(array('notification' => 'Offer has been removed successfully'));
+		redirect('/offers/', 'refresh');
+	}
 
   	/** 
 	 * Called by controller (from URL)
@@ -196,6 +219,8 @@ class Offer extends CI_Controller{
 			$this->db->insert('tbl_offer',$data);
 			$offerID = $this->db->insert_id();	
 		}
+		
+		 $this->session->set_userdata(array('notification' => 'Offer has been saved successfully'));
 		redirect('/offer/edit/'.$type.'/'.$offerID, 'refresh');
 		
 	}
