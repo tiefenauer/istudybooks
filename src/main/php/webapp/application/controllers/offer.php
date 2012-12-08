@@ -84,6 +84,36 @@ class Offer extends CI_Controller{
 		redirect('/offers/', 'refresh');
 	}
 
+
+
+	public function buy($type, $id){
+		$this->load->helper('form');
+		$this->load->model('factory');
+		$this->load->model('implementation/offer_model');
+		$this->load->model('implementation/book_model');
+		
+		$data['offer'] = $this->factory->getOffer($id);
+		$this->load->template('buy_view', $data);
+	}
+	public function order($type, $id){
+		$this->load->helper('form');
+		$this->load->model('factory');
+		$this->load->model('implementation/offer_model');
+		$this->load->model('implementation/book_model');
+		
+		$post = $this->input->post();
+		
+		$success = $this->factory->sendmail($post['email'],'Order ID: '.$post['offer_ID'], 'ordered' );
+		if(!$success)die('error');
+		
+		/*todo: mail senden*/
+		die('mail not working yet');
+		
+		$this->session->set_userdata(array('notification' => 'You have ordered order '.$post['offer_ID']));
+		redirect('/offers/', 'refresh');
+	}
+
+
   	/** 
 	 * Called by controller (from URL)
 	 * 
@@ -120,6 +150,18 @@ class Offer extends CI_Controller{
 		
 				if ($this->form_validation->run() == FALSE)
 				{
+					/*
+					@todo:
+					
+					THIS WOULD FIX IT, BUT POST VARS WILL NO BE FILLED IN AGAIN
+					$this->load->model('factory');
+					$this->load->model('implementation/offer_model');
+					$this->load->model('implementation/book_model');
+						
+					$offer=$this->factory->getOffer();
+					$offer->setArticle(new book_model());
+					$data['offer']=$offer;*/
+					
 					$this->load->template('book_edit_view',$data);
 				}
 				else

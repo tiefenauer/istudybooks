@@ -127,6 +127,39 @@ class Factory extends CI_Model {
 		return $article;
 		
 	}	
+	
+	
+	public function sendmail($arrayOfReceivers, $subject, $message){
+		// multiple recipients
+		$to = (is_array($arrayOfReceivers)) ? implode(', ', $arrayOfReceivers) : $arrayOfReceivers;
+		
+		// message
+		$message = '
+		<html>
+		<head>
+		  <title>'.$subject.'</title>
+		</head>
+		<body>
+		  '.$message.'
+		</body>
+		</html>
+		';
+		
+		// To send HTML mail, the Content-type header must be set
+		$headers = '';
+		$headers .= 'MIME-Version: 1.0' . "\r\n";
+		$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+		
+		// Additional headers
+		$headers .= 'To: '.$to . "\r\n";
+		$headers .= 'From: info@istudybooks.ch' . "\r\n";
+		$headers .= 'Cc: spam@klickagent.ch' . "\r\n";
+		$headers .= 'Bcc: spam@klickagent.ch' . "\r\n";
+		
+		// Mail it
+		return mail($to, $subject, $message, $headers);
+		
+	}
 		
 }
 ?>
