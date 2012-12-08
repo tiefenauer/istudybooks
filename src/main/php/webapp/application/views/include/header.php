@@ -2,13 +2,14 @@
 <html>
 <head>
    <meta charset="UTF-8" />
-   <link href="<?= base_url('css/datepicker.css') ?>" rel="stylesheet">
    <link href="<?= base_url('css/bootstrap.min.css') ?>" rel="stylesheet">
    <link href="<?= base_url('css/bootstrap-responsive.min.css') ?>" rel="stylesheet">
    <link href="<?= base_url('css/docs.css') ?>" rel="stylesheet">  
    
-   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-   <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+  <!-- <link href="<?= base_url('css/jquery-ui-1.9.2.custom.min.css') ?>" rel="stylesheet">-->
+   
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 </head>
 <body>
 <div class="container" id="banner">
@@ -59,8 +60,18 @@
 	                    <ul class="nav">
 	                    	<li><a href="<?= base_url('/offers') ?>">Angebote</a></li>
 	                    </ul>
-	            </div>	            
+	            </div>	    
+	            
+		           
+	                    
             </div>
 		</div>
 	</div>
+	
+	 <?php 
+	 $this->load->library('session');
+	 if($this->session->userdata('notification')){ echo '<div class="notification">'.$this->session->userdata('notification').' </div>'; 
+		 $this->session->set_userdata(array('notification'=>false));
+	 }
+	            ?>
             	
