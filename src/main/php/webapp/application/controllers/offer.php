@@ -106,9 +106,6 @@ class Offer extends CI_Controller{
 		$success = $this->factory->sendmail($post['email'],'Order ID: '.$post['offer_ID'], 'ordered' );
 		if(!$success)die('error');
 		
-		/*todo: mail senden*/
-		die('mail not working yet');
-		
 		$this->session->set_userdata(array('notification' => 'You have ordered order '.$post['offer_ID']));
 		redirect('/offers/', 'refresh');
 	}
