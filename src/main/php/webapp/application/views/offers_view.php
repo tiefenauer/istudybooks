@@ -37,7 +37,7 @@ $active_class = 'class ="active"';
 			<tr>
 				<td><a href="<?php echo site_url('/offer/edit/'.$offer->getArticle()->getType().'/'.$offer->getId()); ?>"><?php echo 'edit '.$offer->getArticle()->getType() ?></a></td>
 				<td><?php echo $offer->getId() ?></td>
-				<td><?php echo $offer->getArticle()->getTitle() ?></td>
+				<td><a href="<?php echo site_url('/offer/view/' . $offer->getId()) ?>"><?php echo $offer->getArticle()->getTitle() ?></a></td>
 				<td><?php echo $offer->getArticle()->getType() ?></td>
 				<td><?php echo $offer->getPrice() ?></td>
 			</tr>

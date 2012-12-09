@@ -9,6 +9,18 @@ class Offer extends CI_Controller{
 		}	
 	}
 	
+	/**
+	 * View details for an offer
+	 */
+	public function view($id) {
+		if($id == '') {
+			redirect('offers', 'refresh');
+		}
+		$this->load->model('factory');
+		$data = $this->factory->getOffer($id);
+		$this->load->template('offer_detail', $data);
+	}
+	
 	/** 
 	 * Called by controller (from URL)
 	 * 
