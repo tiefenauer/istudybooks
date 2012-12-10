@@ -26,10 +26,11 @@ $active_class = 'class ="active"';
 		<caption>Laufende Angebote</caption>
 		<thead>
 			<th class="span1">edit</th>
-			<th class="span1">ID</th>
-			<th class="span4">Titel</th>
-			<th class="span2">Typ</th>
-			<th class="span1">Preis</th>
+			<th class="span1">id</th>
+			<th class="span4">title</th>
+			<th class="span2">type</th>
+			<th class="span1">price</th>
+			<th class="span1">buy</th>
 		</thead>
 		<tbody>
 		<!-- Loop over offers -->
@@ -45,6 +46,10 @@ $active_class = 'class ="active"';
 				<td style="cursor: hand;"><a href="<?php echo site_url('/offer/view/'.$id ) ?>"><?=$title ?></a></td>
 				<td><?=$type ?></td>
 				<td><?=$price ?></td>
+<<<<<<< HEAD
+=======
+				<td><a href="<?php echo site_url('/offer/buy/'.$type.'/'.$id); ?>"><?='buy '.$type ?></a></td>
+>>>>>>> 9e8cb853c07f104f2cafbcd97c5f4f338757dc40
 			</tr>
 		<?php endforeach ?>
 			

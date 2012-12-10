@@ -17,7 +17,6 @@ class book_model extends CI_Model implements IArticle {
 	public function __construct($id=false)
 	{
 		if($id != false){
-			$this->id=$id;
 			$sql = '
 					SELECT 	
 							title,
@@ -32,6 +31,13 @@ class book_model extends CI_Model implements IArticle {
 			';
 			$query = $this->db->query($sql);
 			$data = $query->result_array();
+			
+			//if offer not found -> id to false!!
+			if(count($data)==0){
+				$this->id=false;
+				return false;
+			}
+			$this->id=$id;
 			$this->dataDTO = $data[0];
 		}
 	}		

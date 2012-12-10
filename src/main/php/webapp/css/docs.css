@@ -846,3 +846,27 @@ form.well {
   }
 
 }
+
+div.notificationWrapper{
+	height: 40px;
+	margin-bottom: 5px;
+}
+
+div.notification {
+	margin-top: -10px;
+	position:  relative;
+	z-index:  9999;
+	display: none;
+	width: 			100%;
+	color: 			#111;
+	background: 		#f5da5d;
+	border: 		1px solid #cfb53f;
+	
+	border-radius: 		5px;
+	-webkit-border-radius:  5px;
+	-moz-border-radius: 	5px;
+	
+}
+div.notification>div{
+		padding: 		10px;
+}

@@ -25,7 +25,7 @@ class Offer extends CI_Controller{
 		if($type==false){
 			$this->load->template('offer_view');
 		} else {
-		
+			
 			$this->load->model('factory');
 			$this->load->model('implementation/offer_model');
 			$this->load->model('implementation/book_model');	
@@ -56,8 +56,58 @@ class Offer extends CI_Controller{
 		$this->load->model('implementation/book_model');		
 		
 		$data['offer'] = $this->factory->getOffer($id);
-		
+		if($data['offer']->getID() === false || $data['offer']->getID() === 0){
+			$this->session->set_userdata(array('notification' => 'Offer has been not been found, create a new one'));
+			redirect('/offer/add/'.$type.'/0', 'refresh');
+		}
 		$this->load->template($type . '_edit_view', $data);
+	}
+
+ 	/** 
+	 * Called by controller (from URL)
+	 * 
+	 * Open a window removes offer and its article
+	 */	
+	public function delete($type,$offer_ID){
+		 $query = $this->db->get_where('tbl_offer', array('pk_offer' => $offer_ID), 1, 0);
+		 $row = $query->result_array();
+		 $row = $row[0];
+		 
+		 $this->db->where('pk_offer', $offer_ID); 
+		 $this->db->delete('tbl_offer'); 
+		 $this->db->where('pk_article', $row['fk_article']); 
+		 $this->db->delete('tbl_article'); 
+		 $this->db->where('fk_article', $row['fk_article']); 
+		 $this->db->delete('tbl_book'); 
+		 
+		$this->session->set_userdata(array('notification' => 'Offer has been removed successfully'));
+		redirect('/offers/', 'refresh');
+	}
+
+
+
+	public function buy($type, $id){
+		$this->load->helper('form');
+		$this->load->model('factory');
+		$this->load->model('implementation/offer_model');
+		$this->load->model('implementation/book_model');
+		
+		$data['offer'] = $this->factory->getOffer($id);
+		$this->load->template('buy_view', $data);
+	}
+	public function order($type, $id){
+		$this->load->helper('form');
+		$this->load->model('factory');
+		$this->load->model('implementation/offer_model');
+		$this->load->model('implementation/book_model');
+		
+		$post = $this->input->post();
+		
+		$success = $this->factory->sendmail($post['email'],'Order ID: '.$post['offer_ID'], 'ordered' );
+		if(!$success)die('error');
+		
+		$this->session->set_userdata(array('notification' => 'You have ordered order '.$post['offer_ID']));
+		redirect('/offers/', 'refresh');
 	}
 
 
@@ -97,6 +147,18 @@ class Offer extends CI_Controller{
 		
 				if ($this->form_validation->run() == FALSE)
 				{
+					/*
+					@todo:
+					
+					THIS WOULD FIX IT, BUT POST VARS WILL NO BE FILLED IN AGAIN
+					$this->load->model('factory');
+					$this->load->model('implementation/offer_model');
+					$this->load->model('implementation/book_model');
+						
+					$offer=$this->factory->getOffer();
+					$offer->setArticle(new book_model());
+					$data['offer']=$offer;*/
+					
 					$this->load->template('book_edit_view',$data);
 				}
 				else
@@ -196,6 +258,8 @@ class Offer extends CI_Controller{
 			$this->db->insert('tbl_offer',$data);
 			$offerID = $this->db->insert_id();	
 		}
+		
+		 $this->session->set_userdata(array('notification' => 'Offer has been saved successfully'));
 		redirect('/offer/edit/'.$type.'/'.$offerID, 'refresh');
 		
 	}
