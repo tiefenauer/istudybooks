@@ -40,6 +40,12 @@ $articledata = json_decode(json_encode($article->getData()));
 				</tr>
 				<?php endforeach ?>
 			</table>
+			
+			<a href="<?php echo site_url('/offer/buy/'.$article->getType().'/'.$article->getId()); ?>" 
+				class="btn btn-success">
+				<i class="icon-shopping-cart icon-white"></i> 
+				Buch kaufen
+			</a>
 		</div>
 	</div>
 </div>
