@@ -17,6 +17,7 @@ class offer_model extends CI_Model implements IOffer {
 	 */	 
 	public function __construct($id=false)
 	{
+		parent::__construct();
 		if($id != false){
 			$sql = '
 					SELECT 	
@@ -26,7 +27,7 @@ class offer_model extends CI_Model implements IOffer {
 					
 					FROM tbl_offer			
 					WHERE
-						pk_offer = \'' . $id . '\'
+						pk_offer = ' . $id . '
 			';
 			$query = $this->db->query($sql);
 			$data = $query->result_array();

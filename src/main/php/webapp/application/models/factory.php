@@ -7,7 +7,10 @@ class Factory extends CI_Model {
 	 */
 	public function __construct()
 	{
+		parent::__construct();
 		$this->load->database();
+		$this->load->model('implementation/book_model');
+		$this->load->model('implementation/offer_model');
 	}
 	
 	/**

@@ -5,6 +5,12 @@ $base = explode('/offers', $_SERVER['REQUEST_URI']);
 $base = $base[0] . '/offers';
 $active_class = 'class ="active"';
 ?>
+<style>
+	.view_offer:hover {
+		cursor: hand;
+		cursor: pointer;
+	}
+</style>
 
 <div class="row">
 	<div class="span12">
@@ -40,10 +46,10 @@ $active_class = 'class ="active"';
 			$title = $offer->getArticle()->getTitle();
 			$price = $offer->getPrice();
 			?>
-			<tr>
+			<tr class="view_offer">
 				<td><a href="<?php echo site_url('/offer/edit/'.$type.'/'.$id); ?>"><?='edit '.$type ?></a></td>
 				<td><?=$id ?></td>
-				<td style="cursor: hand;"><a href="<?php echo site_url('/offer/view/'.$id ) ?>"><?=$title ?></a></td>
+				<td><a class="view_offer_link" href="<?php echo site_url('/offer/view/'.$id ) ?>"><?=$title ?></a></td>
 				<td><?=$type ?></td>
 				<td><?=$price ?></td>
 				<td><a href="<?php echo site_url('/offer/buy/'.$type.'/'.$id); ?>"><?='buy '.$type ?></a></td>
@@ -55,7 +61,7 @@ $active_class = 'class ="active"';
 	</table>
 </div>
 <script>
-	$(".view_offer").click(function() {
-  		window.location.href = $(this).find('a').attr('href');
+	$('.view_offer').click(function() {
+  		window.location.href = $(this).find('.view_offer_link').attr('href');
 	});
 </script>
