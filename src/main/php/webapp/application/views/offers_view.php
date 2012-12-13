@@ -47,12 +47,25 @@ $active_class = 'class ="active"';
 			$price = $offer->getPrice();
 			?>
 			<tr class="view_offer">
-				<td><a href="<?php echo site_url('/offer/edit/'.$type.'/'.$id); ?>"><?='edit '.$type ?></a></td>
+				<td>
+					<a 	href="<?php echo site_url('/offer/edit/'.$type.'/'.$id); ?>"
+						class="btn">
+						<i class="icon-edit"></i>
+						<?='edit '.$type ?>
+					</a>
+				</td>
 				<td><?=$id ?></td>
 				<td><a class="view_offer_link" href="<?php echo site_url('/offer/view/'.$id ) ?>"><?=$title ?></a></td>
 				<td><?=$type ?></td>
 				<td><?=$price ?></td>
-				<td><a href="<?php echo site_url('/offer/buy/'.$type.'/'.$id); ?>"><?='buy '.$type ?></a></td>
+				<td>
+					<a 	href="<?php echo site_url('/offer/buy/'.$type.'/'.$id); ?>"
+						class="btn btn-success"
+					>
+						<i class="icon-shopping-cart icon-white"></i>
+						<?='Buy '.$type ?>
+					</a>
+				</td>
 			</tr>
 		<?php endforeach ?>
 			
