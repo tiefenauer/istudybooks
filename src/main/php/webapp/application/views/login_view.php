@@ -1,6 +1,7 @@
  <head>
-   <title>Simple Login with CodeIgniter</title>
-   <h1>Simple Login with CodeIgniter</h1>
+   <title>Login</title>
+ </head>
+   <h1>Login</h1>
    <?php echo validation_errors(); ?>
    <?php echo form_open('verifylogin'); ?>
      <label for="username">Username:</label>

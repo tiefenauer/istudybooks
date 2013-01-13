@@ -1,3 +1,6 @@
+ <head>
+   <title>Offer overview</title>
+ </head>
 <?php 
 $tokens = explode('/', $_SERVER['REQUEST_URI']);
 $activetab = $tokens[sizeof($tokens)-1] === 'offers'|'Alle'?'Alle':$tokens[sizeof($tokens)-1];

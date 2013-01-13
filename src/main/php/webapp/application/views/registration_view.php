@@ -1,3 +1,6 @@
+ <head>
+   <title>Registration</title>
+ </head>
 <div id="content">
 <div class="reg_form">
 <h2>Registration</h2>

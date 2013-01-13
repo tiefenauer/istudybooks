@@ -1,3 +1,6 @@
+ <head>
+   <title>Offer detail</title>
+ </head>
 <?php
 $article = $offer->getArticle();
 $articledata = json_decode(json_encode($article->getData()));
