@@ -58,11 +58,25 @@
 	            </div>
 	            <div class="nav-collapse">
 	                    <ul class="nav">
-	                    	<li><a href="<?= base_url('/offers') ?>">Angebote</a></li>
+	                    	<li><a href="<?= base_url('/offers') ?>">Angebote</a></li>	                    	
 	                    </ul>
-	            </div>	    
-	            
-		           
+	                    <ul class="nav pull-right">
+<?php
+							if($this->session->userdata('logged_in'))
+				{ 
+							$session_data = $this->session->userdata('logged_in');
+							$data['username'] = $session_data['username'];
+					?>
+				 			<li><a href="welcome/logout">Logout</a></li> 
+<?php			}
+							else
+				{ ?>				          
+	             			<li><a href="login">Login</a></li>
+	             			<li><a href="register">Register</a></li>
+<?php			}
+?>			                    	
+	                    </ul>
+	            </div>	                 
 	                    
             </div>
 		</div>
