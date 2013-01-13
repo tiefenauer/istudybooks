@@ -67,12 +67,12 @@
 							$session_data = $this->session->userdata('logged_in');
 							$data['username'] = $session_data['username'];
 					?>
-				 			<li><a href="welcome/logout">Logout</a></li> 
+				 			<li><a href="<?= base_url('/welcome/logout') ?>">Logout</a></li> 
 <?php			}
 							else
 				{ ?>				          
-	             			<li><a href="login">Login</a></li>
-	             			<li><a href="register">Register</a></li>
+	             			<li><a href="<?= base_url('/login') ?>">Login</a></li>
+	             			<li><a href="<?= base_url('/register') ?>">Register</a></li>
 <?php			}
 ?>			                    	
 	                    </ul>

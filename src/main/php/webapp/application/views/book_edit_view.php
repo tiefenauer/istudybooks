@@ -1,3 +1,6 @@
+ <head>
+   <title>Book insert</title>
+ </head>
 <?php echo validation_errors();
 	$article = $offer->getArticle();
 	$article_ID = $article->getId();
