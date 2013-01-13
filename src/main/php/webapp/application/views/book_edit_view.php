@@ -2,9 +2,10 @@
 	$article = $offer->getArticle();
 	$article_ID = $article->getId();
 	$offer_ID = $offer->getId();
+	$type = 'book';
 ?>
 
-<?=form_open('offer/save/book/'.$offer_ID);?>
+<?=form_open('offer/save/'.$type.'/'.$offer_ID);?>
 
 <?php
 
@@ -14,9 +15,9 @@
 ?>
 <?=form_hidden($hidden);?>
     
-    <?php $text = ($article_ID !== false) ? 'edit article' : 'create book'; ?>
-    <h3><?php echo $text; ?></h3>
-    
+    <?php $text = ($article_ID !== 0) ? 'edit '.$type : 'create '.$type; ?>
+    <h3><?php echo $text.' and its offer'; ?></h3>
+    <br/>
     <div class="row">
     	<div class="span2"><label for="title">Buchname: </label></div>
     	<div class="span3"><input name="title" type="text" required="required" placeholder="Titel des Buches" value="<?= @$article->getTitle() ?>" /></div>
@@ -38,9 +39,7 @@
     	<div class="span3"><input name="picture" type="file" value="<?= @$article->getData()->picture ?>" /></div>
     </div>	   
     
-    
-    <?php $text = ($offer_ID) ? 'edit offer' : 'create offer'; ?>
-    <h3><?php echo $text; ?></h3>
+  
      
     <div class="row">
     	<div class="span2"><label for="price">Preis: </label></div>
@@ -52,10 +51,15 @@
     </div>
 		
 		
-	<?php $text = ($article_ID !== false) ? 'save' : 'create';
+	<?php $text = ($article_ID !== 0) ? 'save' : 'create';
 	echo '<input name="submit" type="submit" value="'.$text.'" />';
+	if($article_ID !== 0 ) echo '&nbsp;&nbsp;<a href="'.site_url('/offer/delete/'.$type.'/'.$offer_ID).'">remove '.$type.'</a>';
 	?>
 </form>
 <script>
-	$('#expires').datepicker({format: 'dd.mm.yyyy'}).on('changeDate', function(ev){$('#expires').datepicker('hide')});
+$(document).ready(function(){
+	$('#expires').datepicker({ format: 'yyyy-mm-dd' }); //.on('changeDate', function(ev){
+		/*$('#expires').datepicker('hide')*/
+		/**$.datepicker.formatDate('dd-mm-yy', dateTypeVar);*/
+});
 </script>

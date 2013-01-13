@@ -17,9 +17,8 @@ class offer_model extends CI_Model implements IOffer {
 	 */	 
 	public function __construct($id=false)
 	{
-		
+		parent::__construct();
 		if($id != false){
-			$this->id=$id;
 			$sql = '
 					SELECT 	
 							fk_article,
@@ -28,10 +27,18 @@ class offer_model extends CI_Model implements IOffer {
 					
 					FROM tbl_offer			
 					WHERE
-						pk_offer = \'' . $id . '\'
+						pk_offer = ' . $id . '
 			';
 			$query = $this->db->query($sql);
 			$data = $query->result_array();
+			
+			//if offer not found -> id to false!!
+			if(count($data)==0){
+				$this->id=false;
+				return false;
+			}
+			
+			$this->id=$id;
 			$this->price = $data[0]["price"];
 			$this->expDate = $data[0]["expires"];
 			$this->article = Factory::getArticle($data[0]["fk_article"]);

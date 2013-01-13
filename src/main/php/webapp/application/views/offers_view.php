@@ -5,6 +5,12 @@ $base = explode('/offers', $_SERVER['REQUEST_URI']);
 $base = $base[0] . '/offers';
 $active_class = 'class ="active"';
 ?>
+<style>
+	.view_offer:hover {
+		cursor: hand;
+		cursor: pointer;
+	}
+</style>
 
 <div class="row">
 	<div class="span12">
@@ -26,20 +32,40 @@ $active_class = 'class ="active"';
 		<caption>Laufende Angebote</caption>
 		<thead>
 			<th class="span1">edit</th>
-			<th class="span1">ID</th>
-			<th class="span4">Titel</th>
-			<th class="span2">Typ</th>
-			<th class="span1">Preis</th>
+			<th class="span1">id</th>
+			<th class="span4">title</th>
+			<th class="span2">type</th>
+			<th class="span1">price</th>
+			<th class="span1">buy</th>
 		</thead>
 		<tbody>
 		<!-- Loop over offers -->
-		<?php foreach ($offers as $offer): ?>
-			<tr>
-				<td><a href="<?php echo site_url('/offer/edit/'.$offer->getArticle()->getType().'/'.$offer->getId()); ?>"><?php echo 'edit '.$offer->getArticle()->getType() ?></a></td>
-				<td><?php echo $offer->getId() ?></td>
-				<td><a href="<?php echo site_url('/offer/view/' . $offer->getId()) ?>"><?php echo $offer->getArticle()->getTitle() ?></a></td>
-				<td><?php echo $offer->getArticle()->getType() ?></td>
-				<td><?php echo $offer->getPrice() ?></td>
+		<?php foreach ($offers as $offer):
+			$id =  $offer->getId();
+			$type = $offer->getArticle()->getType();
+			$title = $offer->getArticle()->getTitle();
+			$price = $offer->getPrice();
+			?>
+			<tr class="view_offer">
+				<td>
+					<a 	href="<?php echo site_url('/offer/edit/'.$type.'/'.$id); ?>"
+						class="btn">
+						<i class="icon-edit"></i>
+						<?='edit '.$type ?>
+					</a>
+				</td>
+				<td><?=$id ?></td>
+				<td><a class="view_offer_link" href="<?php echo site_url('/offer/view/'.$id ) ?>"><?=$title ?></a></td>
+				<td><?=$type ?></td>
+				<td><?=$price ?></td>
+				<td>
+					<a 	href="<?php echo site_url('/offer/buy/'.$type.'/'.$id); ?>"
+						class="btn btn-success"
+					>
+						<i class="icon-shopping-cart icon-white"></i>
+						<?='Buy '.$type ?>
+					</a>
+				</td>
 			</tr>
 		<?php endforeach ?>
 			
@@ -47,3 +73,8 @@ $active_class = 'class ="active"';
 		
 	</table>
 </div>
+<script>
+	$('.view_offer').click(function() {
+  		window.location.href = $(this).find('.view_offer_link').attr('href');
+	});
+</script>

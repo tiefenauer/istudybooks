@@ -2,13 +2,14 @@
 <html>
 <head>
    <meta charset="UTF-8" />
-   <link href="<?= base_url('css/datepicker.css') ?>" rel="stylesheet">
    <link href="<?= base_url('css/bootstrap.min.css') ?>" rel="stylesheet">
    <link href="<?= base_url('css/bootstrap-responsive.min.css') ?>" rel="stylesheet">
    <link href="<?= base_url('css/docs.css') ?>" rel="stylesheet">  
    
-   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-   <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+  <!-- <link href="<?= base_url('css/jquery-ui-1.9.2.custom.min.css') ?>" rel="stylesheet">-->
+   
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 </head>
 <body>
 <div class="container" id="banner">
@@ -57,10 +58,36 @@
 	            </div>
 	            <div class="nav-collapse">
 	                    <ul class="nav">
-	                    	<li><a href="<?= base_url('/offers') ?>">Angebote</a></li>
+	                    	<li><a href="<?= base_url('/offers') ?>">Angebote</a></li>	                    	
 	                    </ul>
-	            </div>	            
+	                    <ul class="nav pull-right">
+<?php
+							if($this->session->userdata('logged_in'))
+				{ 
+							$session_data = $this->session->userdata('logged_in');
+							$data['username'] = $session_data['username'];
+					?>
+				 			<li><a href="welcome/logout">Logout</a></li> 
+<?php			}
+							else
+				{ ?>				          
+	             			<li><a href="login">Login</a></li>
+	             			<li><a href="register">Register</a></li>
+<?php			}
+?>			                    	
+	                    </ul>
+	            </div>	                 
+	                    
             </div>
 		</div>
+	</div>
+	
+	<div class="notificationWrapper">
+	 <?php 
+	 $this->load->library('session');
+	 if($this->session->userdata('notification')){ echo '<div class="notification"><div>'.$this->session->userdata('notification').'</div></div>'; 
+		 $this->session->set_userdata(array('notification'=>false));
+	 }
+	            ?>
 	</div>
             	

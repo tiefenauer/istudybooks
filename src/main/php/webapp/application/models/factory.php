@@ -7,7 +7,10 @@ class Factory extends CI_Model {
 	 */
 	public function __construct()
 	{
+		parent::__construct();
 		$this->load->database();
+		$this->load->model('implementation/book_model');
+		$this->load->model('implementation/offer_model');
 	}
 	
 	/**
@@ -32,6 +35,8 @@ class Factory extends CI_Model {
 		';
 		$query = $this->db->query($sql);
 		$offers = $query->result_array();
+		
+		
 		$offersArray = array();
 		foreach ($offers as $offer){
 			$offersArray[]=new offer_model($offer['id']);
@@ -58,13 +63,17 @@ class Factory extends CI_Model {
 	 * @return result_array of sql query 
 	 */
 	public function getArticleTypes() {
-		$sql = '
+		/*$sql = '
 				SELECT DISTINCT articletype.typename
 				  FROM tbl_offer AS offer
 				  JOIN tbl_article AS article
 				    ON article.pk_article = offer.fk_article
 				  JOIN tbl_articletype AS articletype
 				    ON articletype.pk_articletype = article.fk_articletype
+		';*/
+		$sql = '
+				SELECT typename
+				  FROM tbl_articletype
 		';
 		$query = $this->db->query($sql);
 		return $query->result_array();
@@ -121,6 +130,39 @@ class Factory extends CI_Model {
 		return $article;
 		
 	}	
+	
+	
+	public function sendmail($arrayOfReceivers, $subject, $message){
+		// multiple recipients
+		$to = (is_array($arrayOfReceivers)) ? implode(', ', $arrayOfReceivers) : $arrayOfReceivers;
+		
+		// message
+		$message = '
+		<html>
+		<head>
+		  <title>'.$subject.'</title>
+		</head>
+		<body>
+		  '.$message.'
+		</body>
+		</html>
+		';
+		
+		// To send HTML mail, the Content-type header must be set
+		$headers = '';
+		$headers .= 'MIME-Version: 1.0' . "\r\n";
+		$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+		
+		// Additional headers
+		$headers .= 'To: '.$to . "\r\n";
+		$headers .= 'From: info@istudybooks.ch' . "\r\n";
+		$headers .= 'Cc: spam@klickagent.ch' . "\r\n";
+		$headers .= 'Bcc: spam@klickagent.ch' . "\r\n";
+		
+		// Mail it
+		return mail($to, $subject, $message, $headers);
+		
+	}
 		
 }
 ?>

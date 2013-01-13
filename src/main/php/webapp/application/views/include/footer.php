@@ -7,13 +7,14 @@
 <script src="<?= base_url('js/bootstrap-datepicker.js') ?>"></script>
   
 <script type="text/javascript">
-	 
   	$(document).ready(function() {
-        $('ul.nav>li').hover(function(){
+  		$('div.notification').fadeIn(200).delay(3000).fadeOut(500);
+       /* $('ul.nav>li').hover(function(){
         	$(this).children('ul').slideDown();
         },function(){
         	$(this).children('ul').slideUp();
         });
+        */
      });
 
   var _gaq = _gaq || [];

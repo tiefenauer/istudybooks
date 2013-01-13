@@ -1,0 +1,27 @@
+!SESSION 2012-12-02 17:21:21.887 -----------------------------------------------
+eclipse.buildId=3.2.2.201208201020
+java.version=1.6.0_24
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=de_CH
+Command-line arguments:  -os win32 -ws win32 -arch x86 -data D:\PortableApps\xampp\htdocs\istudybooks
+
+!ENTRY org.eclipse.core.resources 4 566 2012-12-02 17:21:34.304
+!MESSAGE Workspace was not properly initialized or has already shutdown.
+!SESSION 2012-12-02 17:22:04.993 -----------------------------------------------
+eclipse.buildId=3.2.2.201208201020
+java.version=1.6.0_24
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=de_CH
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.core.resources 4 566 2012-12-02 17:22:19.955
+!MESSAGE Workspace was not properly initialized or has already shutdown.
+!SESSION 2012-12-04 10:45:46.121 -----------------------------------------------
+eclipse.buildId=3.2.2.201208201020
+java.version=1.6.0_24
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=de_CH
+Command-line arguments:  -os win32 -ws win32 -arch x86 -data D:\PortableApps\xampp\htdocs\istudybooks
+
+!ENTRY org.eclipse.core.jobs 2 2 2012-12-04 10:46:10.210
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: com.aptana.scripting.model.BundleManager$BundleLoadJob
