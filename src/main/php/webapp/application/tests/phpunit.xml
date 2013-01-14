@@ -8,9 +8,9 @@
         <server name="SERVER_NAME" value="http://example.com" />
     </php>
     <testsuites>
-        <testsuite name="ControllerTests">
+        <!-- <testsuite name="ControllerTests">
             <directory>controllers</directory>
-        </testsuite>
+        </testsuite> -->
         <testsuite name="HelperTests">
             <directory suffix=".php">helpers</directory>
         </testsuite>
