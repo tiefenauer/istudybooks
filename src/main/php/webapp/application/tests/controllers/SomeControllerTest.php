@@ -3,7 +3,7 @@
 /**
  * @group Controller
  */
-include_once '../CIUnitTestCase.php';
+
 class SomeControllerTest extends CIUnit_TestCase
 {
 	public function setUp()

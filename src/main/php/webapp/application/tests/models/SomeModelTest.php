@@ -3,7 +3,6 @@
 /**
  * @group Model
  */
-include_once '../CIUnitTestCase.php';
 
 class SomeModelTest extends CIUnit_TestCase
 {
