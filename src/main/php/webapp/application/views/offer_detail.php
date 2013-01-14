@@ -36,15 +36,24 @@ $articledata = json_decode(json_encode($article->getData()));
 					<td>Typ</td>
 					<td><?=$article->getType()?></td>
 				</tr>
-				<?php foreach ($articledata as $key => $value): 
-					if ($key != "picture"){?>					
 				<tr>
-					<td><?=$key?></td>
-					<td><?=$value?></td>
-				</tr>
-				<?php
-					} 
-					endforeach ?>
+					<td>ISBN</td>
+					<td><?=$article->getData('isbn')->getISBNString()?></td>
+				</tr>				
+				<?php foreach ($articledata as $key => $value): 
+					switch ($key) {
+						case 'picture':
+						case 'isbn':
+							break;
+						default: ?>
+							<tr>
+								<td><?=$key?></td>
+								<td><?=$value?></td>
+							</tr>						
+						<?php
+							break;
+					}?>
+				<?php endforeach ?>
 			</table>
 			
 			<a href="<?php echo site_url('/offer/buy/'.$article->getType().'/'.$article->getId()); ?>" 
