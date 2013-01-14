@@ -3,7 +3,7 @@
 /**
  * @group Model
  */
-require_once '../../application/third_party/CIUnit/libraries/CIUnitTestCase.php';
+require_once '../CIUnitTestCase.php';
 
 class SomeModelTest extends CIUnit_TestCase
 {
