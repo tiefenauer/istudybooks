@@ -10,19 +10,19 @@
     <testsuites>
         <!-- <testsuite name="ControllerTests">
             <directory>controllers</directory>
-        </testsuite> -->
+        </testsuite> 
         <testsuite name="HelperTests">
             <directory suffix=".php">helpers</directory>
         </testsuite>
         <testsuite name="LibTests">
             <directory suffix=".php">libs</directory>
-        </testsuite>
+        </testsuite> -->
         <testsuite name="ModelTests">
             <directory suffix=".php">models</directory>
         </testsuite>
-        <testsuite name="SystemTests">
+        <!-- <testsuite name="SystemTests">
             <directory suffix=".php">system</directory>
-        </testsuite>
+        </testsuite> -->
     </testsuites>
     
     <logging>
