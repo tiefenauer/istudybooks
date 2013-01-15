@@ -32,6 +32,7 @@
 	            <a class="brand" href="<?= base_url('') ?>">istudybooks</a>
 	            <div class="nav-collapse">
 	                <ul class="nav">
+	                	<?php if($this->session->userdata('logged_in')){ ?>
 	                     <li class="dropdown">
 	                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" href="<?= base_url('/offer/add/') ?>">Artikel eintragen
 	                            <b class="caret"></b>
@@ -42,7 +43,8 @@
 												echo '<li><a href="'.site_url('/offer/add/' . $typename). '">'.$typename.' eintragen</a>	</li>';	
 										endforeach ?>
 	                            </ul>
-	                        </li>  
+	                        </li>
+	                        <?php } //if($this->session->userdata('logged_in')){ ?>  
 	                        
 	                        <!--
 	                   
