@@ -18,7 +18,7 @@ class OfferControllerTest extends CIUnit_TestCase
 	
 	public function testOfferController()
 	{
-		$this->setExpectedException('login required');
+		$this->setExpectedException('RuntimeException');
 		//setExpectedException('login required');
 		// Call the controllers method
 		$this->CI->edit('book','1');
