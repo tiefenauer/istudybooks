@@ -74,7 +74,7 @@ if(defined('CIUnit_Version')){
 $active_group = $env_used;
 
 
-$db['default_test']['hostname'] = 'www.tiefenauer.info';
+$db['default_test']['hostname'] = 'localhost';
 $db['default_test']['username'] = 'istudy';
 $db['default_test']['password'] = 'UxDHy45zv8jCxR32';
 $db['default_test']['database'] = 'istudy_test';
