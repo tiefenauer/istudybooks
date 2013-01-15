@@ -1,0 +1,10 @@
+1:
+    pk_user: '1'
+    username: 	'username'
+    email: 'mail@mail.com'
+    password: '81dc9bdb52d04dc20036dbd8313ed055'
+2:
+    pk_user: '2'
+    username: 	'username2'
+    email: 'mail2@mail.com'
+    password: 'unbekannt'
