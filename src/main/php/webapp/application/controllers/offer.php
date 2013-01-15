@@ -15,6 +15,7 @@ class Offer extends CI_Controller{
 	public function view($id) {
 		if($id == '') {
 			redirect('offers', 'refresh');
+			return; //needed, because unit tests will not quit here (redirect is not taken into consideration)
 		}
 		$this->load->model('factory');
 		$this->load->model('implementation/offer_model');
@@ -67,6 +68,8 @@ class Offer extends CI_Controller{
 		if(	!$this->session->userdata('logged_in') ){
 			$this->session->set_userdata('notification','login required');
 			redirect('/offers', 'refresh');
+			throw new RuntimeException('login required');
+			return; //needed, because unit tests will not quit here (redirect is not taken into consideration)
 		}
 	
 		$this->load->helper('form');
@@ -78,6 +81,7 @@ class Offer extends CI_Controller{
 		if($data['offer']->getID() === false || $data['offer']->getID() === 0){
 			$this->session->set_userdata('notification','Offer has been not been found, create a new one');
 			redirect('/offer/add/'.$type.'/0', 'refresh');
+			return;
 		}
 		$this->load->template($type . '_edit_view', $data);
 	}
@@ -102,6 +106,7 @@ class Offer extends CI_Controller{
 		 
 		$this->session->set_userdata('notification','Offer has been removed successfully');
 		redirect('/offers/', 'refresh');
+		return; //needed, because unit tests will not quit here (redirect is not taken into consideration)
 	}
 
 
