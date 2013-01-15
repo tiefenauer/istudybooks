@@ -15,6 +15,7 @@ class Offer extends CI_Controller{
 	public function view($id) {
 		if($id == '') {
 			redirect('offers', 'refresh');
+			return; //needed, because unit tests will not quit here (redirect is not taken into consideration)
 		}
 		$this->load->model('factory');
 		$this->load->model('implementation/offer_model');
@@ -67,6 +68,8 @@ class Offer extends CI_Controller{
 		if(	!$this->session->userdata('logged_in') ){
 			$this->session->set_userdata('notification','login required');
 			redirect('/offers', 'refresh');
+			throw new RuntimeException('login required');
+			return; //needed, because unit tests will not quit here (redirect is not taken into consideration)
 		}
 	
 		$this->load->helper('form');
@@ -78,6 +81,7 @@ class Offer extends CI_Controller{
 		if($data['offer']->getID() === false || $data['offer']->getID() === 0){
 			$this->session->set_userdata('notification','Offer has been not been found, create a new one');
 			redirect('/offer/add/'.$type.'/0', 'refresh');
+			return;
 		}
 		$this->load->template($type . '_edit_view', $data);
 	}
@@ -102,6 +106,7 @@ class Offer extends CI_Controller{
 		 
 		$this->session->set_userdata('notification','Offer has been removed successfully');
 		redirect('/offers/', 'refresh');
+		return; //needed, because unit tests will not quit here (redirect is not taken into consideration)
 	}
 
 
@@ -189,6 +194,15 @@ class Offer extends CI_Controller{
 					$articleTypeID = $articleArray[0];
 					$articleID = $articleArray[1];
 					
+					$result = $this->saveImage($articleID);
+					if (!array_key_exists ('error', $result)){
+						echo "SUCCESS: " . print_r($result);
+						$filename = $result['file_name'];
+					}
+					else {
+						echo "ERROR:" . print_r($result['error']);
+						$filename = '';	
+					}
 					
 					$data = array(
 			               'fk_article' => $articleID,
@@ -196,7 +210,7 @@ class Offer extends CI_Controller{
 			               'author' => $this->input->post('author'),
 			               'isbn' => $this->input->post('isbn'),
 			               'edition' => $this->input->post('edition'),
-			               'picture' => $this->input->post('picture')
+			               'picture' => $filename
 			        );
 					
 					//add book to db:
@@ -284,5 +298,37 @@ class Offer extends CI_Controller{
 		
 	}
 
+	/**
+	 * Save image for offer. Existing file will be overwritten, if available.
+	 */
+	private function saveImage($articleID = '') {
+		$result = array('error' => 'no file specified (this is OK)');
+		 foreach($_FILES as $key => $value) {
+		 	echo $key . ": " . implode(', ', $value) . '<br/>';
+		 }
+		if(!empty($_FILES['picture'])){
+			$config['upload_path'] = '../path/to/file';
+	        $config['allowed_types'] = 'gif|jpg|jpeg|jpe|png';
+	        $config['max_size']      = '800000000';
+			$config['upload_path'] = './uploads/' . $articleID;
+			$config['max_width']  = '1024';
+			$config['max_height']  = '768';
+			$config['overwrite'] = TRUE;
+			
+			if(!is_dir($config['upload_path'])) {
+				mkdir($config['upload_path'], 0777);
+			}
+			$this->load->library('upload', $config);
+	
+			if ( ! $this->upload->do_upload('picture')){
+				$result = array('error' => $this->upload->display_errors());
+			}
+			else{
+				$result = $this->upload->data();
+			}
+			
+		}
+		return $result;
+	}
 } 
 ?>
