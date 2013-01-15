@@ -4,11 +4,15 @@
 <?php
 $article = $offer->getArticle();
 $articledata = json_decode(json_encode($article->getData()));
+$image_url = site_url().'img/book_placeholder.png';
+if ($articledata->picture != null) {
+	$image_url = site_url().'uploads/'.$article->getId().'/'.$articledata->picture;
+}
 ?>
 <div class="container">
 	<div class="row-fluid">
 		<div class="span3">
-			<img src=<?=site_url().'uploads/'.$article->getId().'/'.$articledata->picture?> />
+			<img src=<?=$image_url?> />
 		</div>
 		<div class="span5">
 			<h2>Angebotsdetails</h2>
@@ -43,6 +47,7 @@ $articledata = json_decode(json_encode($article->getData()));
 				<?php foreach ($articledata as $key => $value): 
 					switch ($key) {
 						case 'isbn':
+						case 'picture':
 							break;
 						default: ?>
 							<tr>
