@@ -6,7 +6,6 @@ var_dump($GLOBALS);
 echo '</pre>';
 exit;
 */
-require_once ('PHPUnit/Autoload.php');
 
 /*
  * ------------------------------------------------------
@@ -60,10 +59,11 @@ require_once ('PHPUnit/Autoload.php');
  * is that the tests folder is in the same directory path as system.  If
  * it is not, update the paths appropriately.
  */
-	$arr = explode("/", getcwd() );
-	$arr = array_slice($arr, 0 , count($arr) - 3);
-	$sys = implode($arr,'/');
-	$system_path = $sys.'/lib/com/codeignitor/system/';
+	//$arr = explode("/", getcwd() );
+	//$arr = array_slice($arr, 0 , count($arr) - 3);
+	//$sys = implode($arr,'/');
+	//$system_path = $sys.'/lib/com/codeignitor/system/';
+	$system_path = "../system";
 
 	set_include_path('.'.PATH_SEPARATOR.'/'.PATH_SEPARATOR.get_include_path());
 /*
