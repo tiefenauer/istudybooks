@@ -260,7 +260,7 @@ exit;
 require_once CIUPATH . 'core/CodeIgniter.php';
 
 // Autoload the PHPUnit Framework
-require_once ('PEAR/Autoload.php');
+require_once ('Autoload.php');
 
 // Load the CIUnit Framework
 require_once CIUPATH. 'libraries/CIUnit.php';
