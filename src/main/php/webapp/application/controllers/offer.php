@@ -307,7 +307,6 @@ class Offer extends CI_Controller{
 		 	echo $key . ": " . implode(', ', $value) . '<br/>';
 		 }
 		if(!empty($_FILES['picture'])){
-			$config['upload_path'] = '../path/to/file';
 	        $config['allowed_types'] = 'gif|jpg|jpeg|jpe|png';
 	        $config['max_size']      = '800000000';
 			$config['upload_path'] = './uploads/' . $articleID;
@@ -315,11 +314,14 @@ class Offer extends CI_Controller{
 			$config['max_height']  = '768';
 			$config['overwrite'] = TRUE;
 			
+			//echo "Actual dir: " . getcwd() . "<br>";
+		 	//echo "Upload dir: " . $config['upload_path'];			
 			if(!is_dir($config['upload_path'])) {
 				mkdir($config['upload_path'], 0777);
 			}
+			
 			$this->load->library('upload', $config);
-	
+			
 			if ( ! $this->upload->do_upload('picture')){
 				$result = array('error' => $this->upload->display_errors());
 			}
