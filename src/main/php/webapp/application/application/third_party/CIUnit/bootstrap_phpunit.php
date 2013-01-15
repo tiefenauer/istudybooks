@@ -6,6 +6,7 @@ var_dump($GLOBALS);
 echo '</pre>';
 exit;
 */
+require_once ('PHPUnit/Autoload.php');
 
 /*
  * ------------------------------------------------------
