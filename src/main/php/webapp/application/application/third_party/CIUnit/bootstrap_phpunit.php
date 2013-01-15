@@ -83,7 +83,7 @@ exit;
  * is that the tests folder is in the same directory as the application
  * folder.  If it is not, update the path accordingly.
  */
-	$application_folder = $sys.'/webapp/application/';	
+	$application_folder = "../application";	
 		
 /*
  *---------------------------------------------------------------
