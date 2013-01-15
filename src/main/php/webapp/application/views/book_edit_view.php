@@ -46,10 +46,10 @@
      
     <div class="row">
     	<div class="span2"><label for="price">Preis: </label></div>
-    	<div class="span3"><input name="price" type="text" placeholder="Gew&uuml;nschter Preis" value="<?= @$offer->getPrice() ?>" /></div>
+    	<div class="span3"><input name="price" type="text" required="required" placeholder="Gew&uuml;nschter Preis" value="<?= @$offer->getPrice() ?>" /></div>
     </div>	
 	<div class="row">
-    	<div class="span2"><label for="expires">Enddatum: </label></div>
+    	<div class="span2"><label for="expires">Enddatum: </label></div>	
     	<div class="span3"><input name="expires" id="expires" type="datetime" data-date-format="dd.mm.yyyy" placeholder="Enddatum der Aktion" value="<?= @$offer->getDate() ?>" /></div>
     </div>
 		
