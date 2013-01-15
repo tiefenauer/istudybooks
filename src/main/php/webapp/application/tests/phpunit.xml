@@ -9,19 +9,19 @@
     </php>
     <testsuites>
         <testsuite name="ControllerTests">
-            <directory>./src/main/php/webapp/application/tests/controllers</directory>
+            <directory>controllers</directory>
         </testsuite>
         <testsuite name="HelperTests">
-            <directory suffix=".php">./src/main/php/webapp/application/tests/helpers</directory>
+            <directory suffix=".php">helpers</directory>
         </testsuite>
         <testsuite name="LibTests">
-            <directory suffix=".php">./src/main/php/webapp/application/tests/libs</directory>
+            <directory suffix=".php">libs</directory>
         </testsuite>
         <testsuite name="ModelTests">
-            <directory suffix=".php">./src/main/php/webapp/application/tests/models</directory>
+            <directory suffix=".php">models</directory>
         </testsuite>
         <testsuite name="SystemTests">
-            <directory suffix=".php">./src/main/php/webapp/application/tests/system</directory>
+            <directory suffix=".php">system</directory>
         </testsuite>
     </testsuites>
     
