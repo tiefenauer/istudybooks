@@ -8,7 +8,7 @@ class VerifyLogin extends CI_Controller {
    $this->load->model('user','',TRUE);
  }
 
- function index()
+ public function index()
  {
    //This method will have the credentials validation
    $this->load->library('form_validation');

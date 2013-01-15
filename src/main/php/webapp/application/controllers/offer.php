@@ -5,7 +5,7 @@ class Offer extends CI_Controller{
 	public function index(){
 		//redirect to offers if no action requested on offer!
 		if( $this->uri->segment(3) == 0 ){
-				redirect('/offers', 'refresh');
+			redirect('/offers', 'refresh');
 		}	
 	}
 	
@@ -64,6 +64,11 @@ class Offer extends CI_Controller{
 	 * @param id = articleID to be edited (URL)
 	 */	
 	public function edit($type,$id){
+		if(	!$this->session->userdata('logged_in') ){
+			$this->session->set_userdata('notification','login required');
+			redirect('/offers', 'refresh');
+		}
+	
 		$this->load->helper('form');
 		$this->load->model('factory');
 		$this->load->model('implementation/offer_model');
@@ -71,11 +76,12 @@ class Offer extends CI_Controller{
 		
 		$data['offer'] = $this->factory->getOffer($id);
 		if($data['offer']->getID() === false || $data['offer']->getID() === 0){
-			$this->session->set_userdata(array('notification' => 'Offer has been not been found, create a new one'));
+			$this->session->set_userdata('notification','Offer has been not been found, create a new one');
 			redirect('/offer/add/'.$type.'/0', 'refresh');
 		}
 		$this->load->template($type . '_edit_view', $data);
 	}
+	
 
  	/** 
 	 * Called by controller (from URL)
@@ -94,7 +100,7 @@ class Offer extends CI_Controller{
 		 $this->db->where('fk_article', $row['fk_article']); 
 		 $this->db->delete('tbl_book'); 
 		 
-		$this->session->set_userdata(array('notification' => 'Offer has been removed successfully'));
+		$this->session->set_userdata('notification','Offer has been removed successfully');
 		redirect('/offers/', 'refresh');
 	}
 
@@ -120,7 +126,7 @@ class Offer extends CI_Controller{
 		$success = $this->factory->sendmail($post['email'],'Order ID: '.$post['offer_ID'], 'ordered' );
 		if(!$success)die('error');
 		
-		$this->session->set_userdata(array('notification' => 'You have ordered order '.$post['offer_ID']));
+		$this->session->set_userdata('notification','You have ordered order '.$post['offer_ID']);
 		redirect('/offers/', 'refresh');
 	}
 
@@ -282,7 +288,7 @@ class Offer extends CI_Controller{
 			$offerID = $this->db->insert_id();	
 		}
 		
-		 $this->session->set_userdata(array('notification' => 'Offer has been saved successfully'));
+		 $this->session->set_userdata('notification', 'Offer has been saved successfully');
 		redirect('/offer/edit/'.$type.'/'.$offerID, 'refresh');
 		
 	}

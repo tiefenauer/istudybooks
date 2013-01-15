@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-session_start();
+//session_start();
 class Welcome extends CI_Controller {
 
 	/**
@@ -19,13 +19,12 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->template('welcome_message');		
+		$this->load->template('welcome_message');	
 	}
 
 	function logout()
 	{
 		$this->session->unset_userdata('logged_in');
-		session_destroy();
 		redirect('welcome', 'refresh');
 	}	
 }

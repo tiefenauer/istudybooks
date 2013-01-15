@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="" tests="13" assertions="9" failures="0" errors="0" time="0.090372">
+    <testsuite name="ControllerTests" tests="3" assertions="2" failures="0" errors="0" time="0.039001">
+      <testsuite name="CI_Unit_Test_class_Test" file="/Users/roman/RomanFiles/Homepages/klickagent/clients/zhaw/istudybooks/src/main/php/webapp/application/tests/controllers/CI_Unit_Test_class_Test.php" fullPackage="CI.Unit.Test.class" tests="1" assertions="0" failures="0" errors="0" time="0.002484">
+        <testcase name="test_CI_Unit_Test_Class" class="CI_Unit_Test_class_Test" file="/Users/roman/RomanFiles/Homepages/klickagent/clients/zhaw/istudybooks/src/main/php/webapp/application/tests/controllers/CI_Unit_Test_class_Test.php" line="13" assertions="0" time="0.002484"/>
+      </testsuite>
+      <testsuite name="SomeControllerTest" file="/Users/roman/RomanFiles/Homepages/klickagent/clients/zhaw/istudybooks/src/main/php/webapp/application/tests/controllers/SomeControllerTest.php" tests="1" assertions="1" failures="0" errors="0" time="0.018757">
+        <testcase name="testWelcomeController" class="SomeControllerTest" file="/Users/roman/RomanFiles/Homepages/klickagent/clients/zhaw/istudybooks/src/main/php/webapp/application/tests/controllers/SomeControllerTest.php" line="15" assertions="1" time="0.018757"/>
+      </testsuite>
+      <testsuite name="VerifyLoginControllerTest" file="/Users/roman/RomanFiles/Homepages/klickagent/clients/zhaw/istudybooks/src/main/php/webapp/application/tests/controllers/verifyloginTest.php" tests="1" assertions="1" failures="0" errors="0" time="0.017760">
+        <testcase name="testverifyloginController" class="VerifyLoginControllerTest" file="/Users/roman/RomanFiles/Homepages/klickagent/clients/zhaw/istudybooks/src/main/php/webapp/application/tests/controllers/verifyloginTest.php" line="16" assertions="1" time="0.017760"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="HelperTests" tests="1" assertions="0" failures="0" errors="0" time="0.001409">
+      <testsuite name="HelperTest" file="/Users/roman/RomanFiles/Homepages/klickagent/clients/zhaw/istudybooks/src/main/php/webapp/application/tests/helpers/HelperTest.php" tests="1" assertions="0" failures="0" errors="0" time="0.001409">
+        <testcase name="testSampleFunction" class="HelperTest" file="/Users/roman/RomanFiles/Homepages/klickagent/clients/zhaw/istudybooks/src/main/php/webapp/application/tests/helpers/HelperTest.php" line="14" assertions="0" time="0.001409"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="LibTests" tests="1" assertions="0" failures="0" errors="0" time="0.001340">
+      <testsuite name="SomeLibTest" file="/Users/roman/RomanFiles/Homepages/klickagent/clients/zhaw/istudybooks/src/main/php/webapp/application/tests/libs/SomeLibTest.php" tests="1" assertions="0" failures="0" errors="0" time="0.001340">
+        <testcase name="testMethod" class="SomeLibTest" file="/Users/roman/RomanFiles/Homepages/klickagent/clients/zhaw/istudybooks/src/main/php/webapp/application/tests/libs/SomeLibTest.php" line="17" assertions="0" time="0.001340"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="ModelTests" tests="6" assertions="5" failures="0" errors="0" time="0.045572">
+      <testsuite name="SomeModelTest" file="/Users/roman/RomanFiles/Homepages/klickagent/clients/zhaw/istudybooks/src/main/php/webapp/application/tests/models/SomeModelTest.php" tests="1" assertions="0" failures="0" errors="0" time="0.001551">
+        <testcase name="testProductFetching" class="SomeModelTest" file="/Users/roman/RomanFiles/Homepages/klickagent/clients/zhaw/istudybooks/src/main/php/webapp/application/tests/models/SomeModelTest.php" line="41" assertions="0" time="0.001551"/>
+      </testsuite>
+      <testsuite name="OfferModel" file="/Users/roman/RomanFiles/Homepages/klickagent/clients/zhaw/istudybooks/src/main/php/webapp/application/tests/models/offersModelTest.php" tests="3" assertions="3" failures="0" errors="0" time="0.031610">
+        <testcase name="testGetArticleTypeTest" class="OfferModel" file="/Users/roman/RomanFiles/Homepages/klickagent/clients/zhaw/istudybooks/src/main/php/webapp/application/tests/models/offersModelTest.php" line="52" assertions="1" time="0.009485"/>
+        <testcase name="testGetArticleType_Fail" class="OfferModel" file="/Users/roman/RomanFiles/Homepages/klickagent/clients/zhaw/istudybooks/src/main/php/webapp/application/tests/models/offersModelTest.php" line="60" assertions="1" time="0.010545"/>
+        <testcase name="testAddBookToDB" class="OfferModel" file="/Users/roman/RomanFiles/Homepages/klickagent/clients/zhaw/istudybooks/src/main/php/webapp/application/tests/models/offersModelTest.php" line="67" assertions="1" time="0.011580"/>
+      </testsuite>
+      <testsuite name="userModel" file="/Users/roman/RomanFiles/Homepages/klickagent/clients/zhaw/istudybooks/src/main/php/webapp/application/tests/models/userModelTest.php" tests="2" assertions="2" failures="0" errors="0" time="0.012411">
+        <testcase name="testloginSuccess" class="userModel" file="/Users/roman/RomanFiles/Homepages/klickagent/clients/zhaw/istudybooks/src/main/php/webapp/application/tests/models/userModelTest.php" line="36" assertions="1" time="0.006245"/>
+        <testcase name="testloginFail" class="userModel" file="/Users/roman/RomanFiles/Homepages/klickagent/clients/zhaw/istudybooks/src/main/php/webapp/application/tests/models/userModelTest.php" line="43" assertions="1" time="0.006166"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="SystemTests" tests="2" assertions="2" failures="0" errors="0" time="0.003050">
+      <testsuite name="PHPTest" file="/Users/roman/RomanFiles/Homepages/klickagent/clients/zhaw/istudybooks/src/main/php/webapp/application/tests/system/PHPTest.php" tests="2" assertions="2" failures="0" errors="0" time="0.003050">
+        <testcase name="testFunctionJsonEncode" class="PHPTest" file="/Users/roman/RomanFiles/Homepages/klickagent/clients/zhaw/istudybooks/src/main/php/webapp/application/tests/system/PHPTest.php" line="14" assertions="1" time="0.001745"/>
+        <testcase name="testPhpVersion" class="PHPTest" file="/Users/roman/RomanFiles/Homepages/klickagent/clients/zhaw/istudybooks/src/main/php/webapp/application/tests/system/PHPTest.php" line="19" assertions="1" time="0.001305"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>
