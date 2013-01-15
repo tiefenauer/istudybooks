@@ -32,6 +32,14 @@ class Offer extends CI_Controller{
 	 * @param type = type of article as text (URL)
 	 */
 	public function add($type=false){
+		if(	!$this->session->userdata('logged_in') ){
+			$this->session->set_userdata('notification','login required');
+			redirect('/offers', 'refresh');
+			throw new RuntimeException('login required');
+			return; //needed, because unit tests will not quit here (redirect is not taken into consideration)
+		}
+	
+	
 		$this->load->helper('form');
 		//$this->load->view('include/header');
 		
@@ -146,7 +154,10 @@ class Offer extends CI_Controller{
 		if(!$success)die('error');
 		
 		$this->session->set_userdata('notification','You have ordered order '.$post['offer_ID']);
+		
 		redirect('/offers/', 'refresh');
+		throw new RuntimeException('ordered successfully');
+		return; //needed, because unit tests will not quit here (redirect is not taken into consideration)
 	}
 
 
@@ -168,9 +179,9 @@ class Offer extends CI_Controller{
 		$data['offer'] = $this->input->post();
 		
 		//if reload after saveing -> redirect to edit page
-		if(empty($data['article']) && $offer_ID!==0)
+		if(empty($data['article']) && $offer_ID!==0){
 			redirect('/offer/edit/'.$type.'/'.$offer_ID, 'refresh');
-		
+		}
 		$articleID = $this->input->post("fk_article");
 		
 		$edit = ($offer_ID != 0); //edit = true, if articleID passed
