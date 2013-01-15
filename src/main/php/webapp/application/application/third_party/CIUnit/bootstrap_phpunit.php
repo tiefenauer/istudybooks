@@ -99,7 +99,7 @@ exit;
  * NO TRAILING SLASH!
  *
  */
-	$view_folder = $sys.'/webapp/application/views';	
+	$view_folder = "../application/views";	
 
 
 /*
