@@ -34,7 +34,9 @@ $active_class = 'class ="active"';
 	<table class="span12 table table-striped table-bordered table-hover">
 		<caption>Laufende Angebote</caption>
 		<thead>
+			<?php if($this->session->userdata('logged_in')){ ?>
 			<th class="span1">edit</th>
+			<?php } //if($this->session->userdata('logged_in')){ ?>
 			<th class="span1">id</th>
 			<th class="span4">title</th>
 			<th class="span2">type</th>
@@ -50,6 +52,7 @@ $active_class = 'class ="active"';
 			$price = $offer->getPrice();
 			?>
 			<tr class="view_offer">
+				<?php if($this->session->userdata('logged_in')){ ?>
 				<td>
 					<a 	href="<?php echo site_url('/offer/edit/'.$type.'/'.$id); ?>"
 						class="btn">
@@ -57,6 +60,7 @@ $active_class = 'class ="active"';
 						<?='edit '.$type ?>
 					</a>
 				</td>
+				<?php }//if($this->session->userdata('logged_in')){ ?>
 				<td><?=$id ?></td>
 				<td><a class="view_offer_link" href="<?php echo site_url('/offer/view/'.$id ) ?>"><?=$title ?></a></td>
 				<td><?=$type ?></td>
