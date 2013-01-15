@@ -59,11 +59,10 @@ exit;
  * is that the tests folder is in the same directory path as system.  If
  * it is not, update the paths appropriately.
  */
-	//$arr = explode("/", getcwd() );
-	//$arr = array_slice($arr, 0 , count($arr) - 3);
-	//$sys = implode($arr,'/');
-	//$system_path = $sys.'/lib/com/codeignitor/system/';
-	$system_path = "../system";
+	$arr = explode("/", getcwd() );
+	$arr = array_slice($arr, 0 , count($arr) - 3);
+	$sys = implode($arr,'/');
+	$system_path = $sys.'/lib/com/codeignitor/system/';
 
 	set_include_path('.'.PATH_SEPARATOR.'/'.PATH_SEPARATOR.get_include_path());
 /*
@@ -83,7 +82,7 @@ exit;
  * is that the tests folder is in the same directory as the application
  * folder.  If it is not, update the path accordingly.
  */
-	$application_folder = "../application";	
+	$application_folder = $sys.'/webapp/application/';	
 		
 /*
  *---------------------------------------------------------------
@@ -99,7 +98,7 @@ exit;
  * NO TRAILING SLASH!
  *
  */
-	$view_folder = "../application/views";	
+	$view_folder = $sys.'/webapp/application/views';	
 
 
 /*
