@@ -4,16 +4,16 @@
  * @group Controller
  */
 
-class VerifyLoginControllerTest extends CIUnit_TestCase
+class OfferControllerTest extends CIUnit_TestCase
 {
 	public function setUp()
 	{
 		// Set the tested controller
-		$this->CI = set_controller('VerifyLogin');
+		$this->CI = set_controller('offer');
 		
 	}
 	
-	public function testverifyloginController()
+	public function testOfferController()
 	{
 		// Call the controllers method
 		$this->CI->index();
@@ -24,4 +24,10 @@ class VerifyLoginControllerTest extends CIUnit_TestCase
 		// Check if the content is OK
 		$this->assertSame(0, preg_match('/(error|notice)/i', $out));
 	}
+	
+	
+	
+	
+	
+	
 }
