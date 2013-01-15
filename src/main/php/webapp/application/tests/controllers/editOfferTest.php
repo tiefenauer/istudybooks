@@ -6,8 +6,20 @@
 
 class OfferControllerTest extends CIUnit_TestCase
 {
+	protected $tables = array(
+		'tbl_offer'	=> 'tbl_offer'
+	);
+
+
+	public function __construct($name = NULL, array $data = array(), $dataName = '')
+	{
+		parent::__construct($name, $data, $dataName);
+	}
+	
+	
 	public function setUp()
 	{
+		parent::setUp();
 		// Set the tested controller
 		$this->CI = set_controller('offer');
 		
@@ -16,10 +28,10 @@ class OfferControllerTest extends CIUnit_TestCase
 		
 	}
 	
-	public function testOfferController()
+	public function testOfferEditControllerFailsNoLogin()
 	{
-		$this->setExpectedException('RuntimeException');
-		//setExpectedException('login required');
+		$this->setExpectedException('RuntimeException','login required');
+		
 		// Call the controllers method
 		$this->CI->edit('book','1');
 		
@@ -31,8 +43,51 @@ class OfferControllerTest extends CIUnit_TestCase
 		//$this->assertSame(1, preg_match('/login required/i', $out));
 	}
 	
+	public function testOfferDeleteControllerFailsNoLogin()
+	{
+		$this->setExpectedException('RuntimeException','login required');
+		
+		// Call the controllers method
+		$this->CI->delete('book','1');
+		
+		// Fetch the buffered output
+		$out = output();
+		
+		// Check if the content is OK
+		//$this->assertSame(1, preg_match('/login required/i', $out));
+	}
 	
 	
+	public function testOfferDelete(){
+		$this->setExpectedException('RuntimeException','offer removed successfully');
+	
+		//login:
+		$this->CI->session->set_userdata('logged_in',true);
+	
+		
+		// Call the controllers method
+		$this->CI->delete('book','3');
+		
+		// Fetch the buffered output
+		$out = output();
+		
+	}
+	
+	public function testOfferDeleteOfferNotAvailable(){
+		
+		//login:
+		$this->CI->session->set_userdata('logged_in',true);
+		
+		$this->setExpectedException('RuntimeException','offer has already been deleted');
+		
+		// Call the controllers method
+		$this->CI->delete('book','9999');
+		
+		
+		// Fetch the buffered output
+		$out = output();
+		
+	}
 	
 	
 	

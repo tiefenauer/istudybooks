@@ -9,7 +9,8 @@ class OfferModel extends CIUnit_TestCase
 	protected $tables = array(
 		'tbl_articletype' => 'tbl_articletype',
 		'tbl_article' => 'tbl_article',
-		'tbl_book'	=> 'tbl_book'
+		'tbl_book'	=> 'tbl_book',
+		'tbl_offer'	=> 'tbl_offer'
 	);
 	
 	public function __construct($name = NULL, array $data = array(), $dataName = '')
@@ -86,6 +87,28 @@ class OfferModel extends CIUnit_TestCase
 		$affectedRows = $this->CI->db->affected_rows();
 
 		$this->assertEquals(1, $affectedRows);
+	}
+	
+	public function testAddOffer(){
+		
+		$data = array(
+		    'fk_article' => 	'2',
+		    'price'=>	10,
+		    'title'=>	'Buch2',
+		    'expires'=> '2000-11-15'
+        );
+		
+		$this->CI->db->insert('tbl_offer',$data);
+		$affectedRows = $this->CI->db->affected_rows();
+
+		$this->assertEquals(1, $affectedRows);
+	}
+	
+	
+	public function testGetOffer(){
+		$offer_ID = 2;
+		$data = $this->CI->factory->getOffer($offer_ID);
+		$this->assertNotEquals(false, $data);
 	}
 	
 	

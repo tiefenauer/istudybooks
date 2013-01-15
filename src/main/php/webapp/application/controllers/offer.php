@@ -81,6 +81,7 @@ class Offer extends CI_Controller{
 		if($data['offer']->getID() === false || $data['offer']->getID() === 0){
 			$this->session->set_userdata('notification','Offer has been not been found, create a new one');
 			redirect('/offer/add/'.$type.'/0', 'refresh');
+			throw new RuntimeException('offer not found');
 			return;
 		}
 		$this->load->template($type . '_edit_view', $data);
@@ -93,7 +94,19 @@ class Offer extends CI_Controller{
 	 * Open a window removes offer and its article
 	 */	
 	public function delete($type,$offer_ID){
+		if(	!$this->session->userdata('logged_in') ){
+			$this->session->set_userdata('notification','login required');
+			redirect('/offers', 'refresh');
+			throw new RuntimeException('login required');
+			return; //needed, because unit tests will not quit here (redirect is not taken into consideration)
+		}
+	
 		 $query = $this->db->get_where('tbl_offer', array('pk_offer' => $offer_ID), 1, 0);
+		 if ($query->num_rows() === 0){
+			$this->session->set_userdata('notification','Offer has already been deleted');
+			 	redirect('/offers/', 'refresh');
+			 	throw new RuntimeException('offer has already been deleted');	 
+		 }
 		 $row = $query->result_array();
 		 $row = $row[0];
 		 
@@ -106,6 +119,7 @@ class Offer extends CI_Controller{
 		 
 		$this->session->set_userdata('notification','Offer has been removed successfully');
 		redirect('/offers/', 'refresh');
+		throw new RuntimeException('offer removed successfully');
 		return; //needed, because unit tests will not quit here (redirect is not taken into consideration)
 	}
 

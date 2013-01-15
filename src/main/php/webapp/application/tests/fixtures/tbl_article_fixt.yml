@@ -1,3 +1,6 @@
 1:
     fk_articletype: '7'
     pk_article: 	'1'
+2:
+    fk_articletype: '7'
+    pk_article: 	'2'
