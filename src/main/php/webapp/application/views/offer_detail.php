@@ -8,7 +8,7 @@ $articledata = json_decode(json_encode($article->getData()));
 <div class="container">
 	<div class="row-fluid">
 		<div class="span3">
-			Foto
+			<img src=<?=site_url().'uploads/'.$article->getId().'/'.$articledata->picture?> />
 		</div>
 		<div class="span5">
 			<h2>Angebotsdetails</h2>
@@ -42,7 +42,6 @@ $articledata = json_decode(json_encode($article->getData()));
 				</tr>				
 				<?php foreach ($articledata as $key => $value): 
 					switch ($key) {
-						case 'picture':
 						case 'isbn':
 							break;
 						default: ?>

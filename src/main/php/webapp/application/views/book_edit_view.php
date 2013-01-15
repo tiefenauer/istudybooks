@@ -8,7 +8,10 @@
 	$type = 'book';
 ?>
 
-<?=form_open('offer/save/'.$type.'/'.$offer_ID);?>
+<?php
+	$form = array('enctype'=>'multipart/form-data');
+?>
+<?=form_open('offer/save/'.$type.'/'.$offer_ID, $form);?>
 
 <?php
 
