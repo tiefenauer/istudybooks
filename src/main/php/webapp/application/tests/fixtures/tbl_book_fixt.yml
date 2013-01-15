@@ -1,4 +1,4 @@
 1:
     fk_article: '7'
-    name: 	'testbook'
+    title: 	'testbook'
     author: 'testauthor'
