@@ -86,7 +86,7 @@
 	 <?php 
 	 $this->load->library('session');
 	 if($this->session->userdata('notification')){ echo '<div class="notification"><div>'.$this->session->userdata('notification').'</div></div>'; 
-		 $this->session->set_userdata(array('notification'=>false));
+		 $this->session->set_userdata('notification',false);
 	 }
 	            ?>
 	</div>

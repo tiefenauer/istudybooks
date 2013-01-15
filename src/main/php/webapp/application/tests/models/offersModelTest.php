@@ -68,7 +68,6 @@ class OfferModel extends CIUnit_TestCase
 	{
 		$articleTypeID = 7;
 		
-		
 		$data = array(
                'fk_articletype' => $articleTypeID
         );
